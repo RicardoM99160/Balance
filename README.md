@@ -1,7 +1,6 @@
 # Balance (Proyecto DSM)
 
 Enlace de Trello
-https://trello.com/b/NkgdATZ2/aplicación-pupusas
 
 ### Integrantes:
 
