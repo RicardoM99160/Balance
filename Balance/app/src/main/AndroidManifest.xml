@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Borré esta línea del application, para que no me apareciera la barra con el nombre de la aplicación
+            android:theme="@style/Theme.Balance" (Esta era la línea original)
+-->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.domos.balance">
 
@@ -8,7 +13,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Balance">
+        android:theme="@style/Theme.AppCompat.NoActionBar">
+        <activity android:name=".CreateTask"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
