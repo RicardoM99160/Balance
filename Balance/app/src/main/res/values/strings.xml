@@ -10,4 +10,6 @@
     <string name="txtSinTareasTitulo">¡ Tienes el día libre !</string>
     <string name="txtSinTareasMensaje1">En este momento no tienes </string>
     <string name="txtSinTareasMensaje2">ninguna tarea.</string>
+
+
 </resources>
