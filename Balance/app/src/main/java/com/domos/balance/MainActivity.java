@@ -22,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
     //Creo que este seria ejecutado cuando termine de crear la nueva tarea
     //En el onResume se recibe la nueva tarea y se almacena en la lista de tareas
     //Si no funciona así tendría que crear algun evento o algo así
+
+    /*
     @Override
     protected void onResume() {
         super.onResume();
@@ -31,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         Task newTask = (Task) getIntent().getSerializableExtra("newTask");
         Tasks.put(newTask.getId(),newTask);
 
-    }
+    }*/
 
 
 
