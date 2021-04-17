@@ -9,20 +9,24 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
+        android:layout_marginStart="40dp"
         android:layout_marginTop="75dp"
+        android:layout_marginEnd="40dp"
         android:layout_marginBottom="10dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginRight="10dp">
 
             <ImageView
                 android:id="@+id/imageView2"
@@ -34,9 +38,18 @@
                 android:id="@+id/textView4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/fuente_1_bold"
                 android:gravity="center"
                 android:text="@string/ctEmoji"
-                android:textColor="@color/black" />
+                android:textColor="@color/txt_gray"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:background="@drawable/thick_line"
+                android:layout_marginTop="5dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -49,19 +62,24 @@
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/fuente_2"
                 android:gravity="center_vertical"
                 android:text="@string/ctTxtTitulo"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textSize="26sp"
+                android:layout_marginLeft="3.5dp"/>
 
             <EditText
-                android:id="@+id/editTextTextPersonName"
+                android:id="@+id/ctEdtTaskname"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
+                android:layout_height="50dp"
+                android:ems="8"
+                android:fontFamily="@font/fuente_2_bold"
                 android:hint="Nombre Tarea"
                 android:inputType="textPersonName"
                 android:textColor="@color/black"
-                android:textColorHint="@color/black" />
+                android:textColorHint="@color/black"
+                android:textSize="30sp" />
         </LinearLayout>
     </LinearLayout>
 
@@ -69,11 +87,10 @@
         android:id="@+id/linearLayout3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="20dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
@@ -81,6 +98,7 @@
             android:id="@+id/imageView3"
             android:layout_width="25dp"
             android:layout_height="25dp"
+            android:layout_marginRight="10dp"
             android:src="@drawable/webcam" />
 
         <LinearLayout
@@ -92,15 +110,20 @@
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="3dp"
+                android:fontFamily="@font/fuente_1_bold"
                 android:text="@string/ctTxtMetodo"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/textView7"
+                android:id="@+id/ctTxtDuration"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Pomodoro"
-                android:textColor="@color/black" />
+                android:fontFamily="@font/fuente_1_bold"
+                android:text="45/15 min"
+                android:textColor="@color/txt_gray"
+                android:textSize="18sp" />
         </LinearLayout>
     </LinearLayout>
 
@@ -108,8 +131,9 @@
         android:id="@+id/linearLayout6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginBottom="25dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="36dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
@@ -120,6 +144,7 @@
             android:id="@+id/imageView4"
             android:layout_width="25dp"
             android:layout_height="25dp"
+            android:layout_marginRight="10dp"
             android:src="@drawable/circular_clock" />
 
         <LinearLayout
@@ -131,15 +156,20 @@
                 android:id="@+id/textView8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="3dp"
+                android:fontFamily="@font/fuente_1_bold"
                 android:text="@string/ctTxtTiempo"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/textView9"
+                android:id="@+id/ctTxtCount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="45 minutos"
-                android:textColor="@color/black" />
+                android:fontFamily="@font/fuente_1_bold"
+                android:text="4 pomodoros"
+                android:textColor="@color/txt_gray"
+                android:textSize="18sp" />
         </LinearLayout>
     </LinearLayout>
 
@@ -156,41 +186,57 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/button"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
+            android:id="@+id/ctBtnCancel"
+            android:layout_width="149dp"
+            android:layout_height="53dp"
             android:layout_marginStart="50dp"
             android:layout_marginEnd="225dp"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/custom_button"
             android:backgroundTint="@color/button_red"
+            android:fontFamily="@font/fuente_2_bold"
             android:onClick="goToHomepage"
             android:text="@string/ctBtnCancelar"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            android:textStyle="bold"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
-            android:id="@+id/button2"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
+            android:id="@+id/ctBtnAccept"
+            android:layout_width="149dp"
+            android:layout_height="53dp"
             android:layout_marginStart="225dp"
             android:layout_marginEnd="50dp"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/custom_button"
             android:backgroundTint="@color/button_red"
+            android:fontFamily="@font/fuente_2_bold"
             android:onClick="selectTimeMethod"
             android:text="@string/ctBtnAceptar"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            android:textStyle="bold"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
-            android:id="@+id/txtTimeMethod"
+            android:id="@+id/ctTxtDurationCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
             android:text="@string/ctTxtAsignarTiempo"
+            android:textColor="@color/white"
+            android:textSize="23sp"
+            android:fontFamily="@font/fuente_2_bold"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -245,48 +291,82 @@
         </RadioGroup>
         -->
 
+        <!-- Este Timpicker se sustituye por un number picker-->
+        <!--
         <TimePicker
-            android:id="@+id/tmpTime"
+            android:id="@+id/ctNumCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="120dp"
             android:timePickerMode="spinner"
+            android:theme="@style/pomodoro_duration_count"
             android:visibility="gone"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"></TimePicker>
-
+        -->
         <NumberPicker
-            android:id="@+id/numMethod"
+            android:id="@+id/ctNumDuration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="70dp"
+            android:theme="@style/pomodoro_duration_count"
+            android:visibility="gone"
+
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtTimeMethod" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.438" />
+        <NumberPicker
+            android:id="@+id/ctNumCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:theme="@style/pomodoro_duration_count"
+            android:visibility="gone"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.438"/>
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="0dp"
+            android:layout_height="4dp"
+            android:layout_marginStart="150dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="150dp"
+
+            android:background="@drawable/thick_line"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ctTxtDurationCount" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/ctBtnReturn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="20dp"
         android:src="@drawable/resource_return"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:backgroundTint="?android:attr/selectableItemBackground"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/imageButton4"
+        android:id="@+id/ctBtnSettings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="40dp"
         android:src="@drawable/settings"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:backgroundTint="?android:attr/selectableItemBackground"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

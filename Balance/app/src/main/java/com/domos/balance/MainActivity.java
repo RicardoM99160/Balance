@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,11 +14,20 @@ import java.util.HashMap;
 public class MainActivity extends AppCompatActivity {
 
     HashMap<String,Task> Tasks = new HashMap<String, Task>();
+    ImageView btnUsericon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        btnUsericon = (ImageView) findViewById(R.id.hpBtnUsericon);
+        btnUsericon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this,"Esto no es un boton", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     //Creo que este seria ejecutado cuando termine de crear la nueva tarea

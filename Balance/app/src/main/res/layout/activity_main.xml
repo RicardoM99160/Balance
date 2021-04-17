@@ -25,7 +25,8 @@
             android:layout_marginBottom="5dp"
             android:text="@string/hpTxtSaludo"
             android:textColor="@color/white"
-            android:textSize="30sp" />
+            android:textSize="30sp"
+            android:fontFamily="@font/fuente_2"/>
 
         <TextView
             android:id="@+id/txtNombre"
@@ -34,7 +35,7 @@
             android:text="@string/hpTxtNombre"
             android:textColor="@color/white"
             android:textSize="30sp"
-            android:textStyle="bold" />
+            android:fontFamily="@font/fuente_2_bold"/>
     </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -66,17 +67,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="150dp"
-                android:fontFamily="@font/din_alternate_medium"
+                android:fontFamily="@font/fuente_1_bold"
                 android:text="@string/hpTxtTitulo"
                 android:textColor="@color/black"
                 android:textSize="24sp" />
 
             <ImageButton
-                android:id="@+id/btnAjustes"
+                android:id="@+id/hpBtnSettings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="?android:attr/selectableItemBackground"
-                app:srcCompat="@drawable/settings" />
+                android:src="@drawable/settings" />
         </LinearLayout>
 
         <LinearLayout
@@ -87,7 +87,7 @@
             android:layout_marginEnd="74dp"
             android:gravity="center_horizontal"
             android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/btnNuevaTarea"
+            app:layout_constraintBottom_toTopOf="@+id/hpBtnNewtask"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout7">
@@ -97,7 +97,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:fontFamily="@font/din_alternate_regular"
+                android:fontFamily="@font/fuente_1_bold"
                 android:text="@string/hpTxtSinTareasTitulo"
                 android:textColor="@color/black"
                 android:textSize="30sp" />
@@ -106,7 +106,7 @@
                 android:id="@+id/txtSinTareasMensaje1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/din_alternate_medium"
+                android:fontFamily="@font/fuente_1_bold"
                 android:text="@string/hpTxtSinTareasMensaje1"
                 android:textColor="@color/txt_gray"
                 android:textSize="22sp" />
@@ -115,24 +115,29 @@
                 android:id="@+id/txtSinTareasMensaje2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/din_alternate_medium"
+                android:fontFamily="@font/fuente_1_bold"
                 android:text="@string/hpTxtSinTareasMensaje2"
                 android:textColor="@color/txt_gray"
                 android:textSize="22sp" />
         </LinearLayout>
 
         <Button
-            android:id="@+id/btnNuevaTarea"
+            android:id="@+id/hpBtnNewtask"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="53dp"
             android:layout_marginStart="60dp"
             android:layout_marginEnd="60dp"
             android:layout_marginBottom="70dp"
             android:background="@drawable/custom_button"
             android:backgroundTint="@color/button_red"
+            android:fontFamily="@font/fuente_2_bold"
             android:onClick="crearTarea"
             android:text="@string/hpBtnNuevaTarea"
+            android:textAllCaps="false"
             android:textColor="@color/white"
+            android:textSize="22sp"
+            android:textStyle="bold"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -140,7 +145,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/hpBtnUsericon"
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_marginTop="28dp"
@@ -150,7 +155,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/hpSearchbar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
@@ -163,6 +168,7 @@
         android:drawableEnd="@drawable/search"
         android:paddingVertical="10dp"
         android:paddingHorizontal="25dp"
+        android:fontFamily="@font/fuente_2"
 
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"

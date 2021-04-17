@@ -18,4 +18,9 @@
         <item name="colorAccent">@color/radiobtn_pink</item>
         <item name="android:textColorPrimary">@color/button_red</item>
     </style>
+
+    <style name="pomodoro_duration_count">
+        <item name="android:textSize">25sp</item>
+        <item name="android:fontFamily">@font/fuente_2_bold</item>
+    </style>
 </resources>
