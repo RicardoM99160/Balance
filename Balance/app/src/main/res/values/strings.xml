@@ -2,14 +2,14 @@
     <string name="app_name">Balance</string>
 
     <!-- Homepage Strings -->
-    <string name="txtSaludo">Hola,</string>
-    <string name="txtNombre">Gerardo Moreno</string>
-    <string name="txtTitulo">Mis tareas</string>
-    <string name="edtxtBuscarTarea">Buscar...</string>
-    <string name="btnNuevaTarea">Nueva Tarea</string>
-    <string name="txtSinTareasTitulo">¡ Tienes el día libre !</string>
-    <string name="txtSinTareasMensaje1">En este momento no tienes </string>
-    <string name="txtSinTareasMensaje2">ninguna tarea.</string>
+    <string name="hpTxtSaludo">Hola,</string>
+    <string name="hpTxtNombre">Gerardo Moreno</string>
+    <string name="hpTxtTitulo">Mis tareas</string>
+    <string name="hpEdtxtBuscarTarea">Buscar...</string>
+    <string name="hpBtnNuevaTarea">Nueva Tarea</string>
+    <string name="hpTxtSinTareasTitulo">¡ Tienes el día libre !</string>
+    <string name="hpTxtSinTareasMensaje1">En este momento no tienes </string>
+    <string name="hpTxtSinTareasMensaje2">ninguna tarea.</string>
 
     <!-- Create Task Strings -->
     <string name="ctTxtTitulo">Nueva Tarea</string>

@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
-            android:text="@string/txtSaludo"
+            android:text="@string/hpTxtSaludo"
             android:textColor="@color/white"
             android:textSize="30dp" />
 
@@ -30,7 +30,7 @@
             android:id="@+id/txtNombre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/txtNombre"
+            android:text="@string/hpTxtNombre"
             android:textColor="@color/white"
             android:textSize="30dp"
             android:textStyle="bold" />
@@ -39,11 +39,13 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="0dp"
-        android:layout_height="500dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="250dp"
         android:background="@drawable/rounded_corners"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:id="@+id/linearLayout7"
@@ -63,7 +65,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="150dp"
-                android:text="@string/txtTitulo"
+                android:text="@string/hpTxtTitulo"
                 android:textColor="@color/black"
                 android:textSize="25dp" />
 
@@ -71,7 +73,8 @@
                 android:id="@+id/btnAjustes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@android:drawable/ic_menu_manage" />
+                app:srcCompat="@drawable/ic_baseline_tune_24"
+                android:backgroundTint="?android:attr/selectableItemBackground"/>
         </LinearLayout>
 
         <LinearLayout
@@ -92,7 +95,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:text="@string/txtSinTareasTitulo"
+                android:text="@string/hpTxtSinTareasTitulo"
                 android:textColor="@color/black"
                 android:textSize="30dp" />
 
@@ -100,7 +103,7 @@
                 android:id="@+id/txtSinTareasMensaje1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/txtSinTareasMensaje1"
+                android:text="@string/hpTxtSinTareasMensaje1"
                 android:textColor="@color/txt_gray"
                 android:textSize="20dp" />
 
@@ -108,7 +111,7 @@
                 android:id="@+id/txtSinTareasMensaje2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/txtSinTareasMensaje2"
+                android:text="@string/hpTxtSinTareasMensaje2"
                 android:textColor="@color/txt_gray"
                 android:textSize="20dp" />
         </LinearLayout>
@@ -123,7 +126,7 @@
             android:background="@drawable/custom_button"
             android:backgroundTint="@color/button_red"
             android:onClick="crearTarea"
-            android:text="@string/btnNuevaTarea"
+            android:text="@string/hpBtnNuevaTarea"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -131,5 +134,15 @@
             app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="36dp"
+        android:src="@drawable/user_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
