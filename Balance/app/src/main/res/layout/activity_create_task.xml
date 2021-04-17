@@ -11,11 +11,11 @@
         android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="75dp"
         android:layout_marginBottom="10dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -26,9 +26,9 @@
 
             <ImageView
                 android:id="@+id/imageView2"
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                tools:srcCompat="@tools:sample/avatars" />
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/nervous" />
 
             <TextView
                 android:id="@+id/textView4"
@@ -71,7 +71,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout6"
@@ -80,9 +79,9 @@
 
         <ImageView
             android:id="@+id/imageView3"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/webcam" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -110,7 +109,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
-        android:layout_marginTop="10dp"
         android:layout_marginBottom="25dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
@@ -120,9 +118,9 @@
 
         <ImageView
             android:id="@+id/imageView4"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/circular_clock" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -148,39 +146,44 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
         android:layout_width="match_parent"
-        android:layout_height="430dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="325dp"
         android:background="@drawable/rounded_corners_blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <Button
             android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="225dp"
             android:layout_marginBottom="30dp"
             android:background="@drawable/custom_button"
             android:backgroundTint="@color/button_red"
-            android:text="@string/ctBtnCancelar"
             android:onClick="goToHomepage"
+            android:text="@string/ctBtnCancelar"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/button2"
-            app:layout_constraintHorizontal_bias="0.447"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/button2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="225dp"
             android:layout_marginEnd="50dp"
             android:layout_marginBottom="30dp"
             android:background="@drawable/custom_button"
             android:backgroundTint="@color/button_red"
-            android:text="@string/ctBtnAceptar"
             android:onClick="selectTimeMethod"
+            android:text="@string/ctBtnAceptar"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/txtTimeMethod"
@@ -263,5 +266,27 @@
             app:layout_constraintTop_toBottomOf="@+id/txtTimeMethod" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/resource_return"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:backgroundTint="?android:attr/selectableItemBackground"/>
+
+    <ImageButton
+        android:id="@+id/imageButton4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="40dp"
+        android:src="@drawable/settings"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:backgroundTint="?android:attr/selectableItemBackground"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
