@@ -16,8 +16,8 @@
     <string name="ctEmoji">Emoji</string>
     <string name="ctTxtMetodo">Duración pomodoro</string>
     <string name="ctTxtTiempo">Cantidad</string>
-    <string name="ctTxtAsignarMetodo">Asignar Duración</string>
-    <string name="ctTxtAsignarTiempo">Asignar Cantidad</string>
+    <string name="ctTxtAsignarDuracion">Asignar Duración</string>
+    <string name="ctTxtAsignarCantidad">Asignar Cantidad</string>
     <string name="ctTxtAsignarEmoji">Emoji</string>
     <string name="ctBtnCancelar">Cancelar</string>
     <string name="ctBtnAceptar">Aceptar</string>
