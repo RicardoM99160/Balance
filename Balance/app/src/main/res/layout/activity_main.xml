@@ -76,7 +76,8 @@
                 android:id="@+id/hpBtnSettings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/settings" />
+                android:src="@drawable/settings"
+                android:background="?android:attr/selectableItemBackground"/>
         </LinearLayout>
 
         <LinearLayout
@@ -163,7 +164,7 @@
         android:background="@drawable/search_bar"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/hpEdtxtBuscarTarea"
+        android:hint="@string/hpEdtxtBuscarTarea"
         android:textSize="14sp"
         android:drawableEnd="@drawable/search"
         android:paddingVertical="10dp"

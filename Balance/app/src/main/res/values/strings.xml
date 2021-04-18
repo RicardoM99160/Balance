@@ -21,5 +21,6 @@
     <string name="ctTxtAsignarEmoji">Emoji</string>
     <string name="ctBtnCancelar">Cancelar</string>
     <string name="ctBtnAceptar">Aceptar</string>
+    <string name="ctBtnFinalizar">Finalizar</string>
 
 </resources>

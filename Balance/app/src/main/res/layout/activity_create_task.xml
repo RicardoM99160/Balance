@@ -29,7 +29,7 @@
             android:layout_marginRight="10dp">
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/ctBtnEmoji"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:src="@drawable/nervous" />
@@ -72,7 +72,7 @@
             <EditText
                 android:id="@+id/ctEdtTaskname"
                 android:layout_width="wrap_content"
-                android:layout_height="50dp"
+                android:layout_height="55dp"
                 android:ems="8"
                 android:fontFamily="@font/fuente_2_bold"
                 android:hint="Nombre Tarea"
@@ -121,7 +121,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/fuente_1_bold"
-                android:text="45/15 min"
+                android:text=""
                 android:textColor="@color/txt_gray"
                 android:textSize="18sp" />
         </LinearLayout>
@@ -167,7 +167,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/fuente_1_bold"
-                android:text="4 pomodoros"
+                android:text=""
                 android:textColor="@color/txt_gray"
                 android:textSize="18sp" />
         </LinearLayout>
@@ -195,7 +195,6 @@
             android:background="@drawable/custom_button"
             android:backgroundTint="@color/button_red"
             android:fontFamily="@font/fuente_2_bold"
-            android:onClick="goToHomepage"
             android:text="@string/ctBtnCancelar"
             android:textAllCaps="false"
             android:textSize="18sp"
@@ -215,7 +214,6 @@
             android:background="@drawable/custom_button"
             android:backgroundTint="@color/button_red"
             android:fontFamily="@font/fuente_2_bold"
-            android:onClick="selectTimeMethod"
             android:text="@string/ctBtnAceptar"
             android:textAllCaps="false"
             android:textSize="18sp"
@@ -378,6 +376,7 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="20dp"
         android:src="@drawable/resource_return"
+        android:background="?android:attr/selectableItemBackground"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -388,6 +387,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="40dp"
         android:src="@drawable/settings"
+        android:background="?android:attr/selectableItemBackground"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
