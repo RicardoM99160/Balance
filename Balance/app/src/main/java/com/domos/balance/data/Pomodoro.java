@@ -6,6 +6,8 @@ public class Pomodoro {
     private boolean state;
     private boolean status;
 
+    public Pomodoro(){}
+
     public Pomodoro(int id, String duration, boolean state, boolean status) {
         this.id = id;
         this.duration = duration;

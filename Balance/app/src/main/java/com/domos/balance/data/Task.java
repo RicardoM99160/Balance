@@ -10,6 +10,8 @@ public class Task {
     private boolean status; //true = exitosa || false = fallida
     private Pomodoro[] pomodoros;
 
+    public Task(){}
+
     public Task(String id, String name, String duration, int count, int emoji, boolean state, boolean status, Pomodoro[] pomodoros) {
         this.id = id;
         this.name = name;

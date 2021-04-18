@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/taskImgEmoji"
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:src="@drawable/nervous"
@@ -33,7 +33,7 @@
             android:layout_weight="4">
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/taskTxtName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Título tarea"
@@ -43,7 +43,16 @@
                 android:fontFamily="@font/fuente_1_bold"/>
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/taskTxtDuration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Duración"
+                android:textColor="@color/txt_gray"
+                android:textSize="18sp"
+                android:fontFamily="@font/fuente_1_bold"/>
+
+            <TextView
+                android:id="@+id/taskTxtCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Duración"
@@ -54,7 +63,7 @@
         </LinearLayout>
 
         <RadioButton
-            android:id="@+id/radioButton"
+            android:id="@+id/taskRdButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:theme="@style/RadioButtonStyle"
