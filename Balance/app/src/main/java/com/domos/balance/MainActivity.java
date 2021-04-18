@@ -13,7 +13,6 @@ import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
 
-    HashMap<String,Task> Tasks = new HashMap<String, Task>();
     ImageView btnUsericon;
 
     @Override

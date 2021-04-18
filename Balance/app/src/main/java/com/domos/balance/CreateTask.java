@@ -36,7 +36,6 @@ public class CreateTask extends AppCompatActivity {
     EmojiAdapter adapterEmojis;
 
     //Todavía no lo estoy implementando
-    Task newTask;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +46,6 @@ public class CreateTask extends AppCompatActivity {
         initialize();
 
         timeIsSelected = false;
-        newTask = new Task();
 
     }
 
