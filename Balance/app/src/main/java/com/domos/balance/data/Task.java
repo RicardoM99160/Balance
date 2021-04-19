@@ -9,10 +9,11 @@ public class Task {
     private boolean state; //true = sin realizar || false = realizada (exitosa o fallida) esto lo indica el radio buton de la tarjeta de la tarea
     private boolean status; //true = exitosa || false = fallida
     private Pomodoro[] pomodoros;
+    private Note notes;
 
     public Task(){}
 
-    public Task(String id, String name, String duration, int count, int emoji, boolean state, boolean status, Pomodoro[] pomodoros) {
+    public Task(String id, String name, String duration, int count, int emoji, boolean state, boolean status, Pomodoro[] pomodoros, Note notes) {
         this.id = id;
         this.name = name;
         this.duration = duration;
@@ -21,6 +22,16 @@ public class Task {
         this.state = state;
         this.status = status;
         this.pomodoros = pomodoros;
+        this.notes = notes;
+    }
+
+    public Task(String id, String name, String duration, int count, int emoji) {
+        this.id = id;
+        this.name = name;
+        this.duration = duration;
+        this.count = count;
+        this.emoji = emoji;
+        this.state = true;
     }
 
     public String getId() {
@@ -85,5 +96,13 @@ public class Task {
 
     public void setPomodoros(Pomodoro[] pomodoros) {
         this.pomodoros = pomodoros;
+    }
+
+    public Note getNotes() {
+        return notes;
+    }
+
+    public void setNotes(Note notes) {
+        this.notes = notes;
     }
 }

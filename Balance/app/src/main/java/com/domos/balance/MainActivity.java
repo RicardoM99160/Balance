@@ -45,12 +45,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void llenarTareas(){
-        tasksList.add(new Task("1","Tarea 1","tu madre",1,R.drawable.nervous,true,true,null));
-        tasksList.add(new Task("2","Tarea 2","tu madre 2",1,R.drawable.sick,true,true,null));
-        tasksList.add(new Task("3","Tarea 3","tu madre 3",1,R.drawable.superhero,true,true,null));
-        tasksList.add(new Task("1","Tarea 1","tu madre",1,R.drawable.nervous,true,true,null));
-        tasksList.add(new Task("2","Tarea 2","tu madre 2",1,R.drawable.sick,true,true,null));
-        tasksList.add(new Task("3","Tarea 3","tu madre 3",1,R.drawable.superhero,true,true,null));
+        tasksList.add(new Task("1","Tarea 1","tu madre",1,R.drawable.nervous));
+        tasksList.add(new Task("2","Tarea 2","tu madre 2",1,R.drawable.sick));
+        tasksList.add(new Task("3","Tarea 3","tu madre 3",1,R.drawable.superhero));
+        tasksList.add(new Task("1","Tarea 1","tu madre",1,R.drawable.nervous));
+        tasksList.add(new Task("2","Tarea 2","tu madre 2",1,R.drawable.sick));
+        tasksList.add(new Task("3","Tarea 3","tu madre 3",1,R.drawable.superhero));
     }
 
     //Creo que este seria ejecutado cuando termine de crear la nueva tarea
