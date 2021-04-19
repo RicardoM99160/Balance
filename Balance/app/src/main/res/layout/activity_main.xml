@@ -133,7 +133,6 @@
             android:background="@drawable/custom_button"
             android:backgroundTint="@color/button_red"
             android:fontFamily="@font/fuente_2_bold"
-            android:onClick="crearTarea"
             android:text="@string/hpBtnNuevaTarea"
             android:textAllCaps="false"
             android:textColor="@color/white"

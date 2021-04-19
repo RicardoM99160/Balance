@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -15,8 +16,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.domos.balance.adapters.EmojiAdapter;
+import com.domos.balance.data.Task;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class CreateTask extends AppCompatActivity {
 
@@ -27,13 +31,17 @@ public class CreateTask extends AppCompatActivity {
     Button btnAccept, btnCancel;
     ImageView btnEmoji;
     ImageButton btnReturn, btnSettings;
+    EditText edtTaskName;
 
 
     //Inicializando variables restantes
     String[] durations = new String[]{"25 min - 5 min","45 min - 15 min","50 min - 10 min", "30 sec - 5 sec"}; //utilizado por NumberPicker numDuration
     Boolean timeIsSelected;
-    int step = 0, stepEmoji = 3;
+    int step = 0, stepEmoji = 3, defaultEmoji = R.drawable.nervous;
     EmojiAdapter adapterEmojis;
+    Task newTask;
+    SimpleDateFormat sdf;
+    String currentDate;
 
     //Todavía no lo estoy implementando
 
@@ -43,6 +51,11 @@ public class CreateTask extends AppCompatActivity {
         setContentView(R.layout.activity_create_task);
 
         step = 0;
+
+        //Calculando la fecha de ahora para guardar las tareas en firebase
+        sdf = new SimpleDateFormat("dd-MM-yyyy");
+        currentDate = sdf.format(new Date());
+
         initialize();
 
         timeIsSelected = false;
@@ -54,9 +67,15 @@ public class CreateTask extends AppCompatActivity {
         numDuration = (NumberPicker) findViewById(R.id.ctNumDuration);
         btnAccept = (Button) findViewById(R.id.ctBtnAccept);
         btnCancel = (Button) findViewById(R.id.ctBtnCancel);
-        btnEmoji = (ImageView) findViewById(R.id.ctBtnEmoji);
         btnReturn = (ImageButton) findViewById(R.id.ctBtnReturn);
         btnSettings = (ImageButton) findViewById(R.id.ctBtnSettings);
+        edtTaskName = (EditText) findViewById(R.id.ctEdtTaskname);
+
+        //Configuración del imageView que funciona como botón para mostrar agregar emoji
+        btnEmoji = (ImageView) findViewById(R.id.ctBtnEmoji);
+        //Esta dos lineas las agrego porque el emoji por default es el que se llama nerous (R.drawable.nervous)
+        btnEmoji.setImageResource(R.drawable.nervous);
+        btnEmoji.setTag(R.drawable.nervous);
 
         //Configuración del TextView que muestra el título "Asignar Método" o "Asignar Tiempo"
         txtDurationCountEmoji = (TextView) findViewById(R.id.ctTxtDurationCount);
@@ -130,6 +149,7 @@ public class CreateTask extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 btnEmoji.setImageResource(emojis.get(position));
+                btnEmoji.setTag(emojis.get(position));
 
                 //Despues de seleccionar un emoji ocultar
                 gridViewEmojis.setVisibility(View.GONE);
@@ -148,6 +168,19 @@ public class CreateTask extends AppCompatActivity {
                     step++;
                     selectDurationCount(step);
                 }else if(step == 1){
+
+                    //TODO: aquí generar la primera tarea
+                    String id = "1";
+                    String name = edtTaskName.getText().toString();
+                    String duration = durations[numDuration.getValue()];
+                    int count = numCount.getValue();
+                    int emoji = (Integer) btnEmoji.getTag();
+                    newTask = new Task(id,name,duration,count,emoji);
+
+
+                    //Envio la tarea a la base de datos
+                    //TODO: Cuando ya haya agregado la autenticación, reemplazar UIDUser por el UID de el usuario loggeado
+                    MainActivity.databaseReference.child("UIDUser").child(MainActivity.currentDate).push().setValue(newTask);
 
                     //TODO: aquí debo guardar la nueva tarea en el arreglo
 
