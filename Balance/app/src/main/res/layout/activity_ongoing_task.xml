@@ -178,13 +178,13 @@
             android:layout_height="53dp"
             android:layout_marginStart="50dp"
             android:layout_marginEnd="225dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="50dp"
             android:background="@drawable/custom_button"
             android:backgroundTint="@color/second_blue"
             android:fontFamily="@font/fuente_2_bold"
             android:text="@string/otBtnInterrupcion"
-            android:textColor="@color/button_font_blue"
             android:textAllCaps="false"
+            android:textColor="@color/button_font_blue"
             android:textSize="18sp"
             android:textStyle="bold"
 
@@ -198,7 +198,7 @@
             android:layout_height="53dp"
             android:layout_marginStart="225dp"
             android:layout_marginEnd="50dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="50dp"
             android:background="@drawable/custom_button"
             android:backgroundTint="@color/button_red"
             android:fontFamily="@font/fuente_2_bold"
@@ -240,6 +240,38 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/otTxtPomodoroTitle" />
+
+        <!-- Por si no te funciona el chronometer revivi esto-->
+
+        <TextView
+            android:id="@+id/otTxtTimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="39   :   10"
+            android:textSize="50sp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/fuente_2_bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.442" />
+
+
+        <!-- Este widget creo que no aplica para nosotros, porque buscamos hacer un temporizador-->
+        <!--
+        <Chronometer
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/fuente_2_bold"
+            android:textColor="@color/white"
+            android:textSize="50sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+         -->
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

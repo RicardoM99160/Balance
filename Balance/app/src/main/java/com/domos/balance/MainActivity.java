@@ -96,7 +96,9 @@ public class MainActivity extends AppCompatActivity {
         btnUsericon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this,"Esto no es un boton", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MainActivity.this,"Esto no es un boton", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this,OngoingTask.class);
+                startActivity(intent);
             }
         });
 
