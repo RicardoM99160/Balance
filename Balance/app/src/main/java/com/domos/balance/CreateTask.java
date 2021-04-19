@@ -65,24 +65,24 @@ public class CreateTask extends AppCompatActivity {
     public void initialize(){
         numCount = (NumberPicker) findViewById(R.id.ctNumCount);
         numDuration = (NumberPicker) findViewById(R.id.ctNumDuration);
-        btnAccept = (Button) findViewById(R.id.ctBtnAccept);
-        btnCancel = (Button) findViewById(R.id.ctBtnCancel);
-        btnReturn = (ImageButton) findViewById(R.id.ctBtnReturn);
-        btnSettings = (ImageButton) findViewById(R.id.ctBtnSettings);
+        btnAccept = (Button) findViewById(R.id.otBtnFinish);
+        btnCancel = (Button) findViewById(R.id.otBtnInterrupt);
+        btnReturn = (ImageButton) findViewById(R.id.otBtnReturn);
+        btnSettings = (ImageButton) findViewById(R.id.otBtnSettings);
         edtTaskName = (EditText) findViewById(R.id.ctEdtTaskname);
 
         //Configuración del imageView que funciona como botón para mostrar agregar emoji
-        btnEmoji = (ImageView) findViewById(R.id.ctBtnEmoji);
+        btnEmoji = (ImageView) findViewById(R.id.otBtnEmoji);
         //Esta dos lineas las agrego porque el emoji por default es el que se llama nerous (R.drawable.nervous)
         btnEmoji.setImageResource(R.drawable.nervous);
         btnEmoji.setTag(R.drawable.nervous);
 
         //Configuración del TextView que muestra el título "Asignar Método" o "Asignar Tiempo"
-        txtDurationCountEmoji = (TextView) findViewById(R.id.ctTxtDurationCount);
+        txtDurationCountEmoji = (TextView) findViewById(R.id.otTxtPomodoroTitle);
         txtDurationCountEmoji.setText(R.string.ctTxtAsignarDuracion);
 
-        txtDuration = (TextView) findViewById(R.id.ctTxtDuration);
-        txtCount = (TextView) findViewById(R.id.ctTxtCount);
+        txtDuration = (TextView) findViewById(R.id.otTxtDuration);
+        txtCount = (TextView) findViewById(R.id.otTxtCount);
 
         btnCancel.setEnabled(false);
 

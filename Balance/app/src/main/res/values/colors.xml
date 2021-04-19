@@ -10,8 +10,8 @@
 
 
     <color name="main_blue">#506EB4</color>
-    <color name="emoji_blue">#41547E</color>
-    <color name="search_bar_blue">#41547E</color>
+    <color name="second_blue">#41547E</color>
+    <color name="button_font_blue">#9BB4EB</color>
     <color name="button_red">#EF4039</color>
     <color name="txt_gray">#A8A4A4</color>
     <color name="radiobtn_pink">#F79F9B</color>

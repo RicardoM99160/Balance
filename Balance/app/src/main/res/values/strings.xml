@@ -14,13 +14,20 @@
     <!-- Create Task Strings -->
     <string name="ctTxtTitulo">Nueva Tarea</string>
     <string name="ctEmoji">Emoji</string>
-    <string name="ctTxtMetodo">Duración pomodoro</string>
-    <string name="ctTxtTiempo">Cantidad</string>
+    <string name="ctTxtDuracion">Duración pomodoro</string>
+    <string name="ctTxtCantidad">Cantidad</string>
     <string name="ctTxtAsignarDuracion">Asignar Duración</string>
     <string name="ctTxtAsignarCantidad">Asignar Cantidad</string>
     <string name="ctTxtAsignarEmoji">Emoji</string>
     <string name="ctBtnCancelar">Cancelar</string>
     <string name="ctBtnAceptar">Aceptar</string>
     <string name="ctBtnFinalizar">Finalizar</string>
+
+    <!-- Ongoing Task Strings -->
+    <string name="otTxtTitulo">Tarea en curso</string>
+    <string name="otTxtDuracion">Duración pomodoro</string>
+    <string name="otTxtCantidad">Cantidad</string>
+    <string name="otBtnTerminar">Terminar</string>
+    <string name="otBtnInterrupcion">Interrupción</string>
 
 </resources>

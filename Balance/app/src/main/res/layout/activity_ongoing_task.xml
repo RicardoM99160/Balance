@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".CreateTask">
+    tools:context=".OngoingTask">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -30,26 +30,17 @@
 
             <ImageView
                 android:id="@+id/otBtnEmoji"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/nervous" />
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:src="@drawable/nervous"
+                android:layout_marginVertical="15dp"/>
 
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/fuente_1_bold"
-                android:gravity="center"
-                android:text="@string/ctEmoji"
-                android:textColor="@color/txt_gray"
-                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/textView5"
                 android:layout_width="match_parent"
                 android:layout_height="4dp"
-                android:background="@drawable/thick_line"
-                android:layout_marginTop="5dp" />
+                android:background="@drawable/thick_line"/>
         </LinearLayout>
 
         <LinearLayout
@@ -64,21 +55,17 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/fuente_2"
                 android:gravity="center_vertical"
-                android:text="@string/ctTxtTitulo"
+                android:text="@string/otTxtTitulo"
                 android:textColor="@color/black"
-                android:textSize="26sp"
-                android:layout_marginLeft="3.5dp"/>
+                android:textSize="26sp" />
 
-            <EditText
-                android:id="@+id/ctEdtTaskname"
+            <TextView
+                android:id="@+id/otTxtTaskname"
                 android:layout_width="wrap_content"
-                android:layout_height="55dp"
-                android:ems="8"
+                android:layout_height="wrap_content"
                 android:fontFamily="@font/fuente_2_bold"
-                android:hint="Nombre Tarea"
-                android:inputType="textPersonName"
+                android:text="Nombre tarea"
                 android:textColor="@color/black"
-                android:textColorHint="@color/black"
                 android:textSize="30sp" />
         </LinearLayout>
     </LinearLayout>
@@ -112,7 +99,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="3dp"
                 android:fontFamily="@font/fuente_1_bold"
-                android:text="@string/ctTxtDuracion"
+                android:text="@string/otTxtDuracion"
                 android:textColor="@color/black"
                 android:textSize="18sp" />
 
@@ -158,7 +145,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="3dp"
                 android:fontFamily="@font/fuente_1_bold"
-                android:text="@string/ctTxtCantidad"
+                android:text="@string/otTxtCantidad"
                 android:textColor="@color/black"
                 android:textSize="18sp" />
 
@@ -195,7 +182,7 @@
             android:background="@drawable/custom_button"
             android:backgroundTint="@color/second_blue"
             android:fontFamily="@font/fuente_2_bold"
-            android:text="@string/ctBtnCancelar"
+            android:text="@string/otBtnInterrupcion"
             android:textColor="@color/button_font_blue"
             android:textAllCaps="false"
             android:textSize="18sp"
@@ -215,7 +202,7 @@
             android:background="@drawable/custom_button"
             android:backgroundTint="@color/button_red"
             android:fontFamily="@font/fuente_2_bold"
-            android:text="@string/ctBtnAceptar"
+            android:text="@string/otBtnTerminar"
             android:textAllCaps="false"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -229,7 +216,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
-            android:text="@string/ctTxtAsignarDuracion"
+            android:text="Pomodoro 1"
             android:textColor="@color/white"
             android:textSize="23sp"
             android:fontFamily="@font/fuente_2_bold"
@@ -253,119 +240,6 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/otTxtPomodoroTitle" />
-
-        <!--El NumberPicker sustituyó esta alternativa-->
-        <!--
-        <RadioGroup
-            android:id="@+id/radioGroup2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="70dp"
-            android:orientation="vertical"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView10">
-
-            <RadioButton
-                android:id="@+id/radioButton2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:button="@android:color/transparent"
-                android:padding="16dp"
-                android:text="Tpo"
-                android:textColor="@drawable/method_text_color"
-                android:textStyle="bold" />
-
-            <RadioButton
-                android:id="@+id/radioButton3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:button="@android:color/transparent"
-                android:padding="16dp"
-                android:text="Center"
-                android:textColor="@drawable/method_text_color"
-                android:textStyle="bold" />
-
-            <RadioButton
-                android:id="@+id/radioButton4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:button="@android:color/transparent"
-                android:padding="16dp"
-                android:text="Bottom"
-                android:textColor="@drawable/method_text_color"
-                android:textStyle="bold" />
-        </RadioGroup>
-        -->
-
-        <!-- Este Timpicker se sustituye por un number picker-->
-        <!--
-        <TimePicker
-            android:id="@+id/ctNumCount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="120dp"
-            android:timePickerMode="spinner"
-            android:theme="@style/pomodoro_duration_count"
-            android:visibility="gone"
-
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"></TimePicker>
-        -->
-        <NumberPicker
-            android:id="@+id/ctNumDuration"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:theme="@style/pomodoro_duration_count"
-            android:visibility="gone"
-
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.438" />
-        <NumberPicker
-            android:id="@+id/ctNumCount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:theme="@style/pomodoro_duration_count"
-            android:visibility="gone"
-
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.438"/>
-
-        <GridView
-            android:id="@+id/ctGridvEmojis"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:columnWidth="64dp"
-            android:numColumns="auto_fit"
-            android:horizontalSpacing="10dp"
-            android:verticalSpacing="10dp"
-            android:stretchMode="columnWidth"
-            android:visibility="gone"
-
-
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="100dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="100dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
