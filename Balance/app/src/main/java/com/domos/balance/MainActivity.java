@@ -9,7 +9,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.domos.balance.adapters.TaskAdapter;
@@ -31,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
     ImageView btnUsericon;
     Button btnNewTask;
     RecyclerView recyclerViewTasks;
+    LinearLayout linearLayoutWithoutTasks;
+    EditText searchBar;
 
     ArrayList<Task> tasksList;
 
@@ -54,8 +58,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void initialize(){
         recyclerViewTasks = (RecyclerView) findViewById(R.id.hpRecyclerVTasks);
+        linearLayoutWithoutTasks = (LinearLayout) findViewById(R.id.hpLinearLayoutWithoutTasks);
         btnUsericon = (ImageView) findViewById(R.id.hpBtnUsericon);
         btnNewTask = (Button) findViewById(R.id.hpBtnNewtask);
+        searchBar = (EditText) findViewById(R.id.hpSearchbar);
 
         selectTaskSetUp();
         buttonSetUp();
@@ -78,8 +84,18 @@ public class MainActivity extends AppCompatActivity {
                     tasksList.add(task);
                 }
 
-                TaskAdapter adapter = new TaskAdapter(tasksList);
-                recyclerViewTasks.setAdapter(adapter);
+                if(tasksList.isEmpty()){
+                    linearLayoutWithoutTasks.setVisibility(View.VISIBLE);
+                    recyclerViewTasks.setVisibility(View.GONE);
+                    searchBar.setVisibility(View.GONE);
+                }else{
+                    linearLayoutWithoutTasks.setVisibility(View.GONE);
+                    recyclerViewTasks.setVisibility(View.VISIBLE);
+                    searchBar.setVisibility(View.VISIBLE);
+                    TaskAdapter adapter = new TaskAdapter(tasksList);
+                    recyclerViewTasks.setAdapter(adapter);
+                }
+
             }
 
             @Override
