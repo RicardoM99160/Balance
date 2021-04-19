@@ -4,7 +4,7 @@
     android:id="@+id/imgEmoji"
     android:layout_width="64dp"
     android:layout_height="64dp"
-    android:background="@drawable/emoji_rounded_background"
+    android:background="@drawable/emoji_rounded_background_blue"
     android:padding="8dp">
 
 </ImageView>

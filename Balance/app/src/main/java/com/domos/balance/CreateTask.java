@@ -141,6 +141,14 @@ public class CreateTask extends AppCompatActivity {
         emojis.add(R.drawable.nervous);
         emojis.add(R.drawable.sick);
         emojis.add(R.drawable.superhero);
+        emojis.add(R.drawable.angry);
+        emojis.add(R.drawable.clown);
+        emojis.add(R.drawable.cyclops);
+        emojis.add(R.drawable.mother);
+        emojis.add(R.drawable.shocked);
+        emojis.add(R.drawable.smile);
+        emojis.add(R.drawable.tongue);
+        emojis.add(R.drawable.zombie);
         gridViewEmojis = (GridView) findViewById(R.id.ctGridvEmojis);
         adapterEmojis = new EmojiAdapter(this,emojis);
         gridViewEmojis.setAdapter(adapterEmojis);
