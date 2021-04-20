@@ -13,6 +13,7 @@
     <color name="second_blue">#41547E</color>
     <color name="button_font_blue">#9BB4EB</color>
     <color name="button_red">#EF4039</color>
+    <color name="button_gray">#EFEFEF</color>
     <color name="txt_gray">#A8A4A4</color>
     <color name="radiobtn_pink">#F79F9B</color>
     <color name="radiobtn_gray">#BFBFBF</color>

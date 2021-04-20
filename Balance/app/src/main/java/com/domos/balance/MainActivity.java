@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(MainActivity.this,"Esto no es un boton", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(MainActivity.this,OngoingTask.class);
+                Intent intent = new Intent(MainActivity.this,Wellcome.class);
                 startActivity(intent);
             }
         });

@@ -30,4 +30,9 @@
     <string name="otBtnTerminar">Terminar</string>
     <string name="otBtnInterrupcion">Interrupción</string>
 
+    <!-- Wellcome Strings -->
+    <string name="wTxtTitulo">Bienvenido a Balance</string>
+    <string name="wBtnInicioSesion">Iniciar Sesión</string>
+    <string name="wBtnRegistrarse">Registrarse</string>
+
 </resources>
