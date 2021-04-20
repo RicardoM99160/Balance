@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".Wellcome"></activity>
+        <activity android:name=".Login"></activity>
+        <activity android:name=".Wellcome" />
         <activity android:name=".OngoingTask" />
         <activity android:name=".CreateTask" />
         <activity android:name=".MainActivity">

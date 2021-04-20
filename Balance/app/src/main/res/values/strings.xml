@@ -35,4 +35,14 @@
     <string name="wBtnInicioSesion">Iniciar Sesión</string>
     <string name="wBtnRegistrarse">Registrarse</string>
 
+    <!-- Login Strings -->
+    <string name="lgTxtTitle">Bienvenido</string>
+    <string name="lgTxtSubtitle">Inicia sesión para continuar</string>
+    <string name="lgHintCorreo">Correo electrónico</string>
+    <string name="lgHintContra">Contraseña</string>
+    <string name="lgTxtOlvideContra">Olvide mi contraseña</string>
+    <string name="lgBtnIniciarSesion">Iniciar sesión</string>
+    <string name="lgBtnGoogle">Continuar con Google</string>
+    <string name="lgTxtSeleccionarInicio">O sino puedes</string>
+
 </resources>
