@@ -5,9 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -93,7 +98,51 @@ public class MainActivity extends AppCompatActivity {
                     recyclerViewTasks.setVisibility(View.VISIBLE);
                     searchBar.setVisibility(View.VISIBLE);
                     TaskAdapter adapter = new TaskAdapter(tasksList);
+
+                    //Evento de click al seleccionar una task
+
+                    adapter.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            //Instanciando dialogo de yes/no
+                             CustomYesNoDialog confirmation = new CustomYesNoDialog(MainActivity.this);
+
+                             confirmation.show();
+
+                             confirmation.setContentView(R.layout.custom_yes_no_dialog);
+                             Button yes_btn = (Button) confirmation.findViewById(R.id.btn_yes);
+                             Button no_btn = (Button) confirmation.findViewById(R.id.btn_no);
+
+
+                             confirmation.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+
+                            yes_btn.setOnClickListener(new View.OnClickListener() {
+                                public void onClick(View v) {
+                                    int noc = recyclerViewTasks.getChildAdapterPosition(v);
+                                    //int nocman = tasksList.get().getEmoji();
+                                    //Toast.makeText(MainActivity.this, no, Toast.LENGTH_LONG).show();
+                                }
+                            });
+
+
+
+                            no_btn.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+
+                                    confirmation.dismiss();
+                                }
+                            });
+
+
+                        }
+                    });
+
+
                     recyclerViewTasks.setAdapter(adapter);
+
+
                 }
 
             }
