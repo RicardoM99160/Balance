@@ -1,6 +1,10 @@
 package com.domos.balance.data;
 
-public class Task {
+import android.os.Parcelable;
+
+import java.io.Serializable;
+
+public class Task  implements Serializable {
     private String id;
     private String name;
     private String duration;
