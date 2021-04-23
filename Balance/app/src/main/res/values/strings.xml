@@ -45,4 +45,14 @@
     <string name="lgBtnGoogle">Continuar con Google</string>
     <string name="lgTxtSeleccionarInicio">O sino puedes</string>
 
+    <!-- Register Strings -->
+    <string name="rgTxtTitle">Crea una cuenta</string>
+    <string name="rgTxtSubtitle">Y comienza a usar Balance</string>
+    <string name="rgHintCorreo">Correo electrónico</string>
+    <string name="rgHintContra">Contraseña</string>
+    <string name="rgHintConfirmarContra">Confirmar Contraseña</string>
+    <string name="rgBtnCrearCuenta">Crear Cuenta</string>
+    <string name="rgBtnGoogle">Continuar con Google</string>
+    <string name="rgTxtSeleccionarInicio">O sino puedes</string>
+
 </resources>

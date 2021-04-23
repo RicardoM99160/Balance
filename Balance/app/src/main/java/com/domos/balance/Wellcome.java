@@ -26,5 +26,13 @@ public class Wellcome extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        btnRegistrarse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Wellcome.this, Register.class);
+                startActivity(intent);
+            }
+        });
     }
 }
