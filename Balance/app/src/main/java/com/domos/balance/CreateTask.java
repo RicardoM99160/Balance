@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -112,7 +114,6 @@ public class CreateTask extends AppCompatActivity {
             }
         });
 
-
     }
 
     //Configuración del NumberPicker utilizado para seleccionar la duración del pomodoro
@@ -177,26 +178,34 @@ public class CreateTask extends AppCompatActivity {
                     selectDurationCount(step);
                 }else if(step == 1){
 
-                    //TODO: aquí generar la primera tarea
-                    String id = "1";
-                    String name = edtTaskName.getText().toString();
-                    String duration = durations[numDuration.getValue()];
-                    int count = numCount.getValue();
-                    int emoji = (Integer) btnEmoji.getTag();
-                    newTask = new Task(id,name,duration,count,emoji);
 
 
-                    //Envio la tarea a la base de datos
-                    //TODO: Cuando ya haya agregado la autenticación, reemplazar UIDUser por el UID de el usuario loggeado
-                    MainActivity.databaseReference.child("UIDUser").child(MainActivity.currentDate).push().setValue(newTask);
+                    if(!TextUtils.isEmpty(edtTaskName.getText().toString()) && !edtTaskName.getText().toString().trim().isEmpty()){
+                        //TODO: aquí generar la primera tarea
+                        String id = "1";
+                        String name = edtTaskName.getText().toString().trim();
+                        String duration = durations[numDuration.getValue()];
+                        int count = numCount.getValue();
+                        int emoji = (Integer) btnEmoji.getTag();
+                        newTask = new Task(id,name,duration,count,emoji);
 
-                    //TODO: aquí debo guardar la nueva tarea en el arreglo
 
-                    //TODO: Se podría mostrar un cuado de dialogo para confirmar si se desea crear la tarea
-                    //Si se selecciona cancelar hacer step = 1;
+                        //Envio la tarea a la base de datos
+                        //TODO: Cuando ya haya agregado la autenticación, reemplazar UIDUser por el UID de el usuario loggeado
+                        MainActivity.databaseReference.child("UIDUser").child(MainActivity.currentDate).push().setValue(newTask);
 
-                    Intent intent = new Intent(CreateTask.this, MainActivity.class);
-                    startActivity(intent);
+                        //TODO: aquí debo guardar la nueva tarea en el arreglo
+
+                        //TODO: Se podría mostrar un cuado de dialogo para confirmar si se desea crear la tarea
+                        //Si se selecciona cancelar hacer step = 1;
+
+                        Intent intent = new Intent(CreateTask.this, MainActivity.class);
+                        startActivity(intent);
+                    }else{
+                        Toast.makeText(getApplicationContext(), "Coloque un nombre a la tarea", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
                 }
 
             }
