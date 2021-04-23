@@ -118,8 +118,8 @@ public class MainActivity extends AppCompatActivity {
 
 
                             yes_btn.setOnClickListener(new View.OnClickListener() {
-                                public void onClick(View v) {
-                                    int noc = recyclerViewTasks.getChildAdapterPosition(v);
+                                public void onClick(View v2) {
+                                    Toast.makeText(MainActivity.this, tasksList.get(recyclerViewTasks.getChildAdapterPosition(v)).getName(), Toast.LENGTH_SHORT).show();
                                     //int nocman = tasksList.get().getEmoji();
                                     //Toast.makeText(MainActivity.this, no, Toast.LENGTH_LONG).show();
                                 }
