@@ -14,9 +14,13 @@ import com.domos.balance.data.Task;
 
 import java.util.ArrayList;
 
-public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolderTask> {
+public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolderTask> implements
+        android.view.View.OnClickListener {
 
     ArrayList<Task> tasks;
+
+    private View.OnClickListener listener;
+
 
     public TaskAdapter(ArrayList<Task> tasks) {
         this.tasks = tasks;
@@ -26,6 +30,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolderTask
     @Override
     public ViewHolderTask onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.todo_task,parent,false);
+        view.setOnClickListener(this);
+
         return new ViewHolderTask(view);
     }
 
@@ -42,6 +48,16 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolderTask
         return tasks.size();
     }
 
+    public void setOnClickListener(View.OnClickListener listener){
+        this.listener = listener;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (listener != null)
+            listener.onClick(v);
+    }
+
     public class ViewHolderTask extends RecyclerView.ViewHolder {
 
         TextView txtName, txtDuration, txtCount;
@@ -53,6 +69,9 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolderTask
             txtDuration = (TextView) itemView.findViewById(R.id.taskTxtDuration);
             txtCount = (TextView) itemView.findViewById(R.id.taskTxtCount);
             imgEmoji = (ImageView) itemView.findViewById(R.id.taskImgEmoji);
+
+
+
         }
     }
 }
