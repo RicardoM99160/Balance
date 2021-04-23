@@ -40,7 +40,7 @@
     <string name="lgTxtSubtitle">Inicia sesión para continuar</string>
     <string name="lgHintCorreo">Correo electrónico</string>
     <string name="lgHintContra">Contraseña</string>
-    <string name="lgTxtOlvideContra">Olvide mi contraseña</string>
+    <string name="lgTxtOlvideContra">Olvidé mi contraseña</string>
     <string name="lgBtnIniciarSesion">Iniciar sesión</string>
     <string name="lgBtnGoogle">Continuar con Google</string>
     <string name="lgTxtSeleccionarInicio">O sino puedes</string>
