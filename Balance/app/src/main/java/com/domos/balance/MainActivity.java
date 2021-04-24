@@ -5,19 +5,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.domos.balance.adapters.TaskAdapter;
 import com.domos.balance.data.Task;
@@ -31,7 +28,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -108,36 +104,7 @@ public class MainActivity extends AppCompatActivity {
                     adapter.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            //Instanciando dialogo de yes/no
-                             CustomYesNoDialog confirmation = new CustomYesNoDialog(MainActivity.this);
-
-                             confirmation.show();
-
-                             confirmation.setContentView(R.layout.custom_yes_no_dialog);
-                             Button yes_btn = (Button) confirmation.findViewById(R.id.btn_yes);
-                             Button no_btn = (Button) confirmation.findViewById(R.id.btn_no);
-
-
-                             confirmation.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
-                             //Agregando onClickListener a los botones del diálogo
-                            yes_btn.setOnClickListener(new View.OnClickListener() {
-                                public void onClick(View v2) {
-
-                                    Intent i = new Intent(MainActivity.this,OngoingTask.class);
-                                    i.putExtra("newOngoingTask", tasksList.get(recyclerViewTasks.getChildAdapterPosition(v)));
-                                    startActivity(i);
-                                    confirmation.dismiss();
-                                }
-                            });
-
-                            no_btn.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-
-                                    confirmation.dismiss();
-                                }
-                            });
+                            showDialog(v);
                         }
                     });
                     recyclerViewTasks.setAdapter(adapter);
@@ -146,6 +113,47 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) { }
+        });
+    }
+
+    public void showDialog(View v){
+        //Instanciando dialogo de yes/no
+        CustomYesNoDialog confirmation = new CustomYesNoDialog(MainActivity.this);
+
+        confirmation.show();
+
+        confirmation.setContentView(R.layout.custom_yes_no_dialog);
+
+        TextView txtTitle = (TextView) confirmation.findViewById(R.id.cdTxtTitle);
+        TextView txtSubtitle = (TextView) confirmation.findViewById(R.id.cdTxtSubtitle);
+        Button yes_btn = (Button) confirmation.findViewById(R.id.cdBtnYes);
+        Button no_btn = (Button) confirmation.findViewById(R.id.cdBtnNo);
+
+        txtTitle.setText(R.string.cdHomepageTitle);
+        txtSubtitle.setVisibility(View.GONE);
+        yes_btn.setText(R.string.cdHomepageConfirmar);
+        no_btn.setText(R.string.cdHomepageCancelar);
+
+
+        confirmation.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        //Agregando onClickListener a los botones del diálogo
+        yes_btn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v2) {
+
+                Intent i = new Intent(MainActivity.this,OngoingTask.class);
+                i.putExtra("newOngoingTask", tasksList.get(recyclerViewTasks.getChildAdapterPosition(v)));
+                startActivity(i);
+                confirmation.dismiss();
+            }
+        });
+
+        no_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                confirmation.dismiss();
+            }
         });
     }
 

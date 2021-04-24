@@ -55,4 +55,15 @@
     <string name="rgBtnGoogle">Continuar con Google</string>
     <string name="rgTxtSeleccionarInicio">O sino puedes</string>
 
+    <!-- Custom Dialog -->
+    <string name="cdHomepageTitle">¿Desea iniciar la tarea?</string>
+    <string name="cdHomepageConfirmar">Si</string>
+    <string name="cdHomepageCancelar">No</string>
+    <string name="cdOngoingTaskReturnTitle">¿Desea abandonar la tarea actual?</string>
+    <string name="cdOngoingTaskReturnSubtitle">Si abandona la tarea será tomada como fallida</string>
+    <string name="cdOngoingTaskFinishTitle">¿Desea terminar la tarea actual?</string>
+    <string name="cdOngoingTaskFinishSubtitle">Si termina la tarea será tomada como fallida</string>
+    <string name="cdOngoingTaskConfirmar">Si</string>
+    <string name="cdOngoingTaskCancelar">No</string>
+
 </resources>

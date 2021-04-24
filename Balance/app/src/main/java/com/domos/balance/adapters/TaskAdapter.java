@@ -1,5 +1,6 @@
 package com.domos.balance.adapters;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,9 +38,13 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolderTask
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderTask holder, int position) {
+
         holder.txtName.setText(tasks.get(position).getName());
         holder.txtDuration.setText(tasks.get(position).getDuration());
-        holder.txtCount.setText(""+tasks.get(position).getCount());
+
+        String cantidadPomodoros = tasks.get(position).getCount() == 1 ? " pomodoro" : " pomodoros";
+        holder.txtCount.setText(""+tasks.get(position).getCount() + cantidadPomodoros);
+
         holder.imgEmoji.setImageResource(tasks.get(position).getEmoji());
     }
 
