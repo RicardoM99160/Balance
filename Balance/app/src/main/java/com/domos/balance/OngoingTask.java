@@ -91,7 +91,7 @@ public class OngoingTask extends AppCompatActivity {
     protected void inicialize(){
         txtTimer = (TextView) findViewById(R.id.otTxtTimer);
 
-        ivEmoji = (ImageView) findViewById(R.id.otBtnEmoji);
+        ivEmoji = (ImageView) findViewById(R.id.otImgEmoji);
         txtTaskname = (TextView) findViewById(R.id.otTxtTaskname);
         txtDuracion = (TextView) findViewById(R.id.otTxtDuration);
         txtCount = (TextView) findViewById(R.id.otTxtCount);

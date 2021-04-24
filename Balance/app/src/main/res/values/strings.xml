@@ -29,6 +29,9 @@
     <string name="otTxtCantidad">Cantidad</string>
     <string name="otBtnTerminar">Terminar</string>
     <string name="otBtnInterrupcion">Interrupción</string>
+    
+    <!-- Task Break Strings -->
+    <string name="btTxtTitleSuggestion">Pausa corta</string>
 
     <!-- Wellcome Strings -->
     <string name="wTxtTitulo">Bienvenido a Balance</string>

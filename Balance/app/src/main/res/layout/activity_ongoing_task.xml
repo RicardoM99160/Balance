@@ -29,7 +29,7 @@
             android:layout_marginRight="10dp">
 
             <ImageView
-                android:id="@+id/otBtnEmoji"
+                android:id="@+id/otImgEmoji"
                 android:layout_width="64dp"
                 android:layout_height="64dp"
                 android:src="@drawable/nervous"
@@ -184,7 +184,7 @@
             android:fontFamily="@font/fuente_2_bold"
             android:text="@string/otBtnInterrupcion"
             android:textAllCaps="false"
-            android:textColor="@color/button_font_blue"
+            android:textColor="@color/font_blue"
             android:textSize="18sp"
             android:textStyle="bold"
 
@@ -248,7 +248,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="39   :   10"
-            android:textSize="50sp"
+            android:textSize="70sp"
             android:textColor="@color/white"
             android:fontFamily="@font/fuente_2_bold"
             app:layout_constraintBottom_toBottomOf="parent"

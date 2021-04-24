@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -74,7 +73,7 @@ public class CreateTask extends AppCompatActivity {
         edtTaskName = (EditText) findViewById(R.id.ctEdtTaskname);
 
         //Configuración del imageView que funciona como botón para mostrar agregar emoji
-        btnEmoji = (ImageView) findViewById(R.id.otBtnEmoji);
+        btnEmoji = (ImageView) findViewById(R.id.otImgEmoji);
         //Esta dos lineas las agrego porque el emoji por default es el que se llama nerous (R.drawable.nervous)
         btnEmoji.setImageResource(R.drawable.nervous);
         btnEmoji.setTag(R.drawable.nervous);
