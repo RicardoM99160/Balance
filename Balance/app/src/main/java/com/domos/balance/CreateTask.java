@@ -37,7 +37,7 @@ public class CreateTask extends AppCompatActivity {
 
 
     //Inicializando variables restantes
-    String[] durations = new String[]{"25 min - 5 min","45 min - 15 min","50 min - 10 min", "30 sec - 5 sec"}; //utilizado por NumberPicker numDuration
+    String[] durations = new String[]{"25 min - 5 min","45 min - 15 min","50 min - 10 min", "10 sec - 5 sec"}; //utilizado por NumberPicker numDuration
     Boolean timeIsSelected;
     int step = 0, stepEmoji = 3, defaultEmoji = R.drawable.nervous;
     EmojiAdapter adapterEmojis;

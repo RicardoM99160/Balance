@@ -57,18 +57,22 @@ public class MainActivity extends AppCompatActivity {
         currentDate = sdf.format(new Date());
         actualUser = databaseReference.child("UIDUser").child(currentDate);
 
+        //Inicializo el recyclerView antes, para tratar que las tareas se carguen rápido
+        //TODO: Buscar la manera de cargar los datos antes que se cargue la vista (si se puede sino así quedará)
+        recyclerViewTasks = (RecyclerView) findViewById(R.id.hpRecyclerVTasks);
+        selectTaskSetUp();
+
         initialize();
     }
 
 
     public void initialize(){
-        recyclerViewTasks = (RecyclerView) findViewById(R.id.hpRecyclerVTasks);
+
         linearLayoutWithoutTasks = (LinearLayout) findViewById(R.id.hpLinearLayoutWithoutTasks);
         btnUsericon = (ImageView) findViewById(R.id.hpBtnUsericon);
         btnNewTask = (Button) findViewById(R.id.hpBtnNewtask);
         searchBar = (EditText) findViewById(R.id.hpSearchbar);
 
-        selectTaskSetUp();
         buttonSetUp();
     }
 
@@ -116,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
 
                              confirmation.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-
+                             //Agregando onClickListener a los botones del diálogo
                             yes_btn.setOnClickListener(new View.OnClickListener() {
                                 public void onClick(View v2) {
 
@@ -127,8 +131,6 @@ public class MainActivity extends AppCompatActivity {
                                 }
                             });
 
-
-
                             no_btn.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
@@ -136,26 +138,15 @@ public class MainActivity extends AppCompatActivity {
                                     confirmation.dismiss();
                                 }
                             });
-
-
                         }
                     });
-
-
                     recyclerViewTasks.setAdapter(adapter);
-
-
                 }
-
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
+            public void onCancelled(@NonNull DatabaseError error) { }
         });
-        //llenarTareas();
-
     }
 
     //Metodo para asignar OnClickListener a todos los botones
@@ -178,14 +169,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void llenarTareas(){
-        tasksList.add(new Task("1","Tarea 1","tu madre",1,R.drawable.nervous));
-        tasksList.add(new Task("2","Tarea 2","tu madre 2",1,R.drawable.sick));
-        tasksList.add(new Task("3","Tarea 3","tu madre 3",1,R.drawable.superhero));
-        tasksList.add(new Task("1","Tarea 1","tu madre",1,R.drawable.nervous));
-        tasksList.add(new Task("2","Tarea 2","tu madre 2",1,R.drawable.sick));
-        tasksList.add(new Task("3","Tarea 3","tu madre 3",1,R.drawable.superhero));
-    }
 
 
 

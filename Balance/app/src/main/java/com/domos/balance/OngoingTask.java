@@ -119,8 +119,8 @@ public class OngoingTask extends AppCompatActivity {
                 pomodoroRest =TimeUnit.MINUTES.toMillis(10);
                 break;
 
-            case "30 sec - 5 sec":
-                pomodoroDuration = TimeUnit.SECONDS.toMillis(30);
+            case "10 sec - 5 sec":
+                pomodoroDuration = TimeUnit.SECONDS.toMillis(10);
                 pomodoroRest = TimeUnit.SECONDS.toMillis(5);
                 break;
         }
