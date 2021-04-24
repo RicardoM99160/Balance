@@ -52,17 +52,21 @@ public class OngoingTask extends AppCompatActivity {
 
         ongoingTask = new Task();
         ongoingTask = (Task) intent.getSerializableExtra("newOngoingTask");
+        currentPomodoro = Integer.parseInt(intent.getExtras().getString("currentPomodoro"));
 
-
-        mSimpleDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
 
         inicialize();
         setPomodoroTimer(ongoingTask.getDuration());
         numberOfPomodoros = ongoingTask.getCount();
-        currentPomodoro = 1;
 
         setupTimer();
-        mCountDownTimer.start();
+
+        if (currentPomodoro <= numberOfPomodoros){
+            mCountDownTimer.start();
+        }else {
+            mCountDownTimer.onFinish();
+        }
+
     }
 
     protected void setupTimer(){
@@ -72,10 +76,34 @@ public class OngoingTask extends AppCompatActivity {
                 //AqUI SE MUEVE A LA OTRA VISTA DE DESCANSO
                 // DEBE COMPROBAR QUE NO SE HAYA TERMINADO TO-DO :(
                 //txtTimer.setText(mSimpleDateFormat.format(0));
-                if(currentPomodoro < numberOfPomodoros){
+                if(currentPomodoro <= numberOfPomodoros){
+
+                    //Cuando se termine un pomodoro esto envia a la siguiente actividad para que el usuario tome su descanso
+                    Intent intent = new Intent(OngoingTask.this, TaskBreak.class);
+                    intent.putExtra("break", ""+pomodoroRest);
+                    intent.putExtra("currentPomodoro", ""+currentPomodoro);
+                    intent.putExtra("ongoingTask", ongoingTask);
+                    startActivity(intent);
+
+                    /*
                     currentPomodoro++;
                     txtCurrentPomodoro.setText("POMODORO "+currentPomodoro);
-                    this.start();
+                    this.start();*/
+                }else {
+                    //Si se llega a este punto significa que la tarea fue terminada con exito
+
+                    //Significa que la tarea fue ejecutada
+                    ongoingTask.setState(false);
+
+                    //Significa que la tarea fue terminada con exito
+                    ongoingTask.setStatus(true);
+
+                    //Almaceno los resultados en la base de datos
+                    saveData();
+
+                    txtCurrentPomodoro.setText("Tarea finalizada");
+                    txtTimer.setText("Felicidades");
+                    this.cancel();
                 }
 
             }
@@ -101,6 +129,7 @@ public class OngoingTask extends AppCompatActivity {
         txtTaskname.setText(ongoingTask.getName());
         txtDuracion.setText(ongoingTask.getDuration());
         txtCount.setText(ongoingTask.getCount()+ " Pomodoros");
+        txtCurrentPomodoro.setText("POMODORO "+currentPomodoro);
 
         btnFinish = (Button) findViewById(R.id.otBtnFinish);
         btnInterrupt = (Button) findViewById(R.id.otBtnInterrupt);
@@ -163,12 +192,18 @@ public class OngoingTask extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                //Obteniendo los strings que seran asignados a los elementos del Dialog
-                int title = R.string.cdOngoingTaskReturnTitle;
-                int subtitle = R.string.cdOngoingTaskReturnSubtitle;
-                int confirm = R.string.cdOngoingTaskConfirmar;
-                int cancel = R.string.cdOngoingTaskCancelar;
-                showDialog(title, subtitle, confirm, cancel);
+                if(ongoingTask.isStatus()){
+                    Intent intent = new Intent(OngoingTask.this, MainActivity.class);
+                    startActivity(intent);
+                }else{
+                    //Obteniendo los strings que seran asignados a los elementos del Dialog
+                    int title = R.string.cdOngoingTaskReturnTitle;
+                    int subtitle = R.string.cdOngoingTaskReturnSubtitle;
+                    int confirm = R.string.cdOngoingTaskConfirmar;
+                    int cancel = R.string.cdOngoingTaskCancelar;
+                    showDialog(title, subtitle, confirm, cancel);
+                }
+
             }
         });
 
@@ -203,6 +238,15 @@ public class OngoingTask extends AppCompatActivity {
                 //Detengo primero el counter
                 mCountDownTimer.cancel();
 
+                //Significa que la tarea fue ejecutada
+                ongoingTask.setState(false);
+
+                //Significa que la tarea no fue terminada exitosamente
+                ongoingTask.setStatus(false);
+
+                //Almaceno los resultados en la base de datos
+                saveData();
+
                 //Redirijo al MainActivity
                 Intent intent = new Intent(OngoingTask.this, MainActivity.class);
                 startActivity(intent);
@@ -217,5 +261,9 @@ public class OngoingTask extends AppCompatActivity {
                 confirmation.dismiss();
             }
         });
+    }
+
+    public void saveData(){
+        MainActivity.databaseReference.child("UIDUser").child(MainActivity.currentDate).child(ongoingTask.getId()).setValue(ongoingTask);
     }
 }

@@ -45,7 +45,7 @@
         app:layout_constraintVertical_bias="0.193" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/tbImgEmoji"
         android:layout_width="299dp"
         android:layout_height="335dp"
         android:src="@drawable/cyclops"
@@ -57,10 +57,10 @@
         app:layout_constraintVertical_bias="0.611" />
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/tbTxtTitleSuggestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/btTxtTitleSuggestion"
+        android:text="@string/tbTxtTitleSuggestion"
         android:textColor="@color/font_blue"
         android:textSize="30sp"
         android:fontFamily="@font/fuente_1_bold"
