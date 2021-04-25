@@ -1,6 +1,7 @@
 package com.domos.balance;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -23,13 +24,14 @@ public class OngoingTask extends AppCompatActivity {
     long mMilliseconds = 60000;
     long pomodoroDuration;
     long pomodoroRest;
-    CountDownTimer mCountDownTimer;
+    CountDownTimer mCountDownTimer, breakTimer;
     SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("mm:ss");
     Task ongoingTask ;
-    ImageView ivEmoji;
-    TextView txtTaskname, txtDuracion, txtCount,  txtTimer, txtCurrentPomodoro;
+    ImageView ivEmoji, ivBreakEmoji;
+    TextView txtTaskname, txtDuracion, txtCount,  txtTimer, txtCurrentPomodoro, txtBreakTimer, txtBreakTitleSuggestion;
     Button btnFinish, btnInterrupt;
     ImageButton btnReturn;
+    ConstraintLayout constraintLayoutBreak, constraintLayoutOngoingTask;
 
 
 
@@ -49,6 +51,7 @@ public class OngoingTask extends AppCompatActivity {
         //Inicializando el Timer
         setPomodoroTimer(ongoingTask.getDuration());
         setupTimer();
+        setupBreak();
 
         //Se inicia el timer si todavía hay pomodoros pendientes
         //Sino se termina
@@ -73,10 +76,12 @@ public class OngoingTask extends AppCompatActivity {
                     ongoingTask.setCurrentPomodoro(ongoingTask.getCurrentPomodoro()+1);
 
                     //Cuando se termine un pomodoro esto envia a la siguiente actividad para que el usuario tome su descanso
-                    Intent intent = new Intent(OngoingTask.this, TaskBreak.class);
+                    /*Intent intent = new Intent(OngoingTask.this, TaskBreak.class);
                     intent.putExtra("break", ""+pomodoroRest);
                     intent.putExtra("ongoingTask", ongoingTask);
-                    startActivity(intent);
+                    startActivity(intent);*/
+                    updateUI("Break");
+                    breakTimer.start();
 
                 }else {
 
@@ -102,16 +107,41 @@ public class OngoingTask extends AppCompatActivity {
         };
     }
 
+    protected void setupBreak(){
+        breakTimer = new CountDownTimer(pomodoroRest, 1000) {
+            @Override
+            public void onFinish() {
+                updateUI("Work");
+                if(ongoingTask.getCurrentPomodoro() <= ongoingTask.getCount()){
+                    mCountDownTimer.start();
+                }else {
+                    mCountDownTimer.onFinish();
+                }
+
+            }
+
+            public void onTick(long millisUntilFinished) {
+                txtBreakTimer.setText(mSimpleDateFormat.format(millisUntilFinished));
+            }
+        };
+    }
+
 
 
     protected void inicialize(){
         txtTimer = (TextView) findViewById(R.id.otTxtTimer);
-
         ivEmoji = (ImageView) findViewById(R.id.otImgEmoji);
         txtTaskname = (TextView) findViewById(R.id.otTxtTaskname);
         txtDuracion = (TextView) findViewById(R.id.otTxtDuration);
         txtCount = (TextView) findViewById(R.id.otTxtCount);
         txtCurrentPomodoro = (TextView) findViewById(R.id.otTxtPomodoroTitle);
+        constraintLayoutBreak = (ConstraintLayout) findViewById(R.id.otConstraintLayoutBreak);
+        constraintLayoutOngoingTask = (ConstraintLayout) findViewById(R.id.otConstraintLayoutOngoingTask);
+
+        txtBreakTimer =  (TextView) findViewById(R.id.tbTxtTimer);
+        txtBreakTitleSuggestion = (TextView) findViewById(R.id.tbTxtTitleSuggestion);
+        ivBreakEmoji = (ImageView) findViewById(R.id.tbImgEmoji);
+        ivBreakEmoji.setImageResource(ongoingTask.getEmoji());
 
         ivEmoji.setImageResource(ongoingTask.getEmoji());
         txtTaskname.setText(ongoingTask.getName());
@@ -254,5 +284,20 @@ public class OngoingTask extends AppCompatActivity {
         }
 
         MainActivity.databaseReference.child("UIDUser").child(MainActivity.currentDate).child(ongoingTask.getId()).setValue(ongoingTask);
+    }
+
+    public void updateUI(String ui){
+        switch (ui){
+            case "Break":
+                constraintLayoutBreak.setVisibility(View.VISIBLE);
+                constraintLayoutOngoingTask.setVisibility(View.GONE);
+                break;
+            case "Work":
+                constraintLayoutBreak.setVisibility(View.GONE);
+                constraintLayoutOngoingTask.setVisibility(View.VISIBLE);
+                break;
+        }
+
+
     }
 }
