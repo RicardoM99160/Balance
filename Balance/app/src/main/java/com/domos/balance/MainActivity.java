@@ -18,10 +18,8 @@ import android.widget.TextView;
 
 import com.domos.balance.adapters.TaskAdapter;
 import com.domos.balance.data.Task;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.GetTokenResult;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -52,7 +50,8 @@ public class MainActivity extends AppCompatActivity {
     public static DatabaseReference databaseReference = database.getReference("usuarios");
     public static SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
     public static String currentDate;
-    Query actualUser;
+    public static String userUID;
+    Query userTasks;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,8 +60,9 @@ public class MainActivity extends AppCompatActivity {
 
 
         mAuth = FirebaseAuth.getInstance();
+        userUID = mAuth.getUid();
         currentDate = sdf.format(new Date());
-        actualUser = databaseReference.child(mAuth.getUid()).child(currentDate);
+        userTasks = databaseReference.child(userUID).child("TareasPendientes");
 
 
 
@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerViewTasks.setLayoutManager(new LinearLayoutManager(this));
 
         
-        actualUser.addValueEventListener(new ValueEventListener() {
+        userTasks.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 tasksList.removeAll(tasksList);

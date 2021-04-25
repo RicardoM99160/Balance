@@ -6,6 +6,7 @@ public class Task  implements Serializable {
     private String id;
     private String name;
     private String duration;
+    private String creationDate;
     private int count;
     private int emoji;
     private int currentPomodoro;
@@ -15,10 +16,11 @@ public class Task  implements Serializable {
 
     public Task(){}
 
-    public Task(String id, String name, String duration, int count, int emoji, int currentPomodoro, boolean isStarted, boolean isSuccessful, String[] notes) {
+    public Task(String id, String name, String duration, String creationDate, int count, int emoji, int currentPomodoro, boolean isStarted, boolean isSuccessful, String[] notes) {
         this.id = id;
         this.name = name;
         this.duration = duration;
+        this.creationDate = creationDate;
         this.count = count;
         this.emoji = emoji;
         this.currentPomodoro = currentPomodoro;
@@ -27,10 +29,11 @@ public class Task  implements Serializable {
         this.notes = notes;
     }
 
-    public Task(String id, String name, String duration, int count, int emoji) {
+    public Task(String id, String name, String duration, String creationDate, int count, int emoji) {
         this.id = id;
         this.name = name;
         this.duration = duration;
+        this.creationDate = creationDate;
         this.count = count;
         this.emoji = emoji;
         this.isStarted = false;
@@ -108,5 +111,13 @@ public class Task  implements Serializable {
 
     public void setCurrentPomodoro(int currentPomodoro) {
         this.currentPomodoro = currentPomodoro;
+    }
+
+    public String getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(String creationDate) {
+        this.creationDate = creationDate;
     }
 }

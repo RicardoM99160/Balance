@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "662048079069-8vhrt622i6rkfgkkfq2dkunok2e9rlu2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.domos.balance",
+            "certificate_hash": "60ac2d011a05df939f133313c504c883de978682"
+          }
+        },
+        {
+          "client_id": "662048079069-jpedidiiata15mmsrefmtsp14mdvi5vj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.domos.balance",
+            "certificate_hash": "2655a8c18c6e4fb5aea9044d2616bba63d954a38"
+          }
+        },
+        {
           "client_id": "662048079069-dhgn0t86qpe6soco8mtl0jd377mruo3v.apps.googleusercontent.com",
           "client_type": 3
         }
