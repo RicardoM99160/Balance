@@ -18,8 +18,10 @@ import android.widget.TextView;
 
 import com.domos.balance.adapters.TaskAdapter;
 import com.domos.balance.data.Task;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GetTokenResult;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -41,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerViewTasks;
     LinearLayout linearLayoutWithoutTasks;
     EditText searchBar;
+
+    String strProvider;
 
     ArrayList<Task> tasksList;
 
@@ -210,29 +214,45 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void getUserData(){
+    public void getUserData() {
 
         //logged with google
-        if(mAuth.getCurrentUser().getProviderData().equals("google.com")){
+        FirebaseUser user = mAuth.getCurrentUser();
 
-            String nombreUsuario = mAuth.getCurrentUser().getDisplayName();
-            tvNombreUsuario.setText(nombreUsuario);
+        if (user == null)
             return;
-        }
-        //Connects to Firebase and gets the user name.
-        String uid = mAuth.getUid();
-        DatabaseReference uidRef = databaseReference.child(uid);
-        ValueEventListener eventListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String nombreUsuario = dataSnapshot.child("Nombre").getValue(String.class);
-                tvNombreUsuario.setText(nombreUsuario);
-            }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {}
-        };
-        uidRef.addListenerForSingleValueEvent(eventListener);
+        String nombreUsuario;
+
+        strProvider = mAuth.getInstance().
+                getAccessToken(false).getResult().getSignInProvider();
+        
+        switch (strProvider) {
+            case "google.com":
+                nombreUsuario = user.getDisplayName();
+                tvNombreUsuario.setText(nombreUsuario);
+                break;
+
+            case "password":
+                //Connects to Firebase and gets the user name.
+                String uid = mAuth.getUid();
+                DatabaseReference uidRef = databaseReference.child(uid);
+                ValueEventListener eventListener = new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        String nombreUsuario = dataSnapshot.child("Nombre").getValue(String.class);
+                        tvNombreUsuario.setText(nombreUsuario);
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                    }
+                };
+                uidRef.addListenerForSingleValueEvent(eventListener);
+
+                break;
+        }
+
 
     }
 
