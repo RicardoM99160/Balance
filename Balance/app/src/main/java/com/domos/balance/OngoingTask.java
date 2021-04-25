@@ -16,25 +16,16 @@ import android.widget.TextView;
 import com.domos.balance.data.Task;
 
 import java.text.SimpleDateFormat;
-import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
 public class OngoingTask extends AppCompatActivity {
 
     long mMilliseconds = 60000;
-
     long pomodoroDuration;
     long pomodoroRest;
-
-    int numberOfPomodoros;
-    int currentPomodoro;
-
     CountDownTimer mCountDownTimer;
-
     SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("mm:ss");
-
     Task ongoingTask ;
-
     ImageView ivEmoji;
     TextView txtTaskname, txtDuracion, txtCount,  txtTimer, txtCurrentPomodoro;
     Button btnFinish, btnInterrupt;
@@ -47,21 +38,21 @@ public class OngoingTask extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ongoing_task);
 
-        //Recuperando task
+        //Recuperando tarea en proceso
         Intent intent = getIntent();
-
         ongoingTask = new Task();
         ongoingTask = (Task) intent.getSerializableExtra("newOngoingTask");
-        currentPomodoro = Integer.parseInt(intent.getExtras().getString("currentPomodoro"));
 
-
+        //Inicializando la interfaz
         inicialize();
-        setPomodoroTimer(ongoingTask.getDuration());
-        numberOfPomodoros = ongoingTask.getCount();
 
+        //Inicializando el Timer
+        setPomodoroTimer(ongoingTask.getDuration());
         setupTimer();
 
-        if (currentPomodoro <= numberOfPomodoros){
+        //Se inicia el timer si todavía hay pomodoros pendientes
+        //Sino se termina
+        if (ongoingTask.getCurrentPomodoro() <= ongoingTask.getCount()){
             mCountDownTimer.start();
         }else {
             mCountDownTimer.onFinish();
@@ -73,34 +64,31 @@ public class OngoingTask extends AppCompatActivity {
        mCountDownTimer = new CountDownTimer(pomodoroDuration, 1000) {
             @Override
             public void onFinish() {
+
                 //AqUI SE MUEVE A LA OTRA VISTA DE DESCANSO
                 // DEBE COMPROBAR QUE NO SE HAYA TERMINADO TO-DO :(
-                //txtTimer.setText(mSimpleDateFormat.format(0));
-                if(currentPomodoro <= numberOfPomodoros){
+                if(ongoingTask.getCurrentPomodoro() <= ongoingTask.getCount()){
+
+                    //Se incrementa el pomodoro actual
+                    ongoingTask.setCurrentPomodoro(ongoingTask.getCurrentPomodoro()+1);
 
                     //Cuando se termine un pomodoro esto envia a la siguiente actividad para que el usuario tome su descanso
                     Intent intent = new Intent(OngoingTask.this, TaskBreak.class);
                     intent.putExtra("break", ""+pomodoroRest);
-                    intent.putExtra("currentPomodoro", ""+currentPomodoro);
                     intent.putExtra("ongoingTask", ongoingTask);
                     startActivity(intent);
 
-                    /*
-                    currentPomodoro++;
-                    txtCurrentPomodoro.setText("POMODORO "+currentPomodoro);
-                    this.start();*/
                 }else {
+
                     //Si se llega a este punto significa que la tarea fue terminada con exito
 
-                    //Significa que la tarea fue ejecutada
-                    ongoingTask.setState(false);
-
                     //Significa que la tarea fue terminada con exito
-                    ongoingTask.setStatus(true);
+                    ongoingTask.setSuccessful(true);
 
                     //Almaceno los resultados en la base de datos
                     saveData();
 
+                    //Le muestro el mensaje de exito al usuario
                     txtCurrentPomodoro.setText("Tarea finalizada");
                     txtTimer.setText("Felicidades");
                     this.cancel();
@@ -129,7 +117,7 @@ public class OngoingTask extends AppCompatActivity {
         txtTaskname.setText(ongoingTask.getName());
         txtDuracion.setText(ongoingTask.getDuration());
         txtCount.setText(ongoingTask.getCount()+ " Pomodoros");
-        txtCurrentPomodoro.setText("POMODORO "+currentPomodoro);
+        txtCurrentPomodoro.setText("POMODORO "+ongoingTask.getCurrentPomodoro());
 
         btnFinish = (Button) findViewById(R.id.otBtnFinish);
         btnInterrupt = (Button) findViewById(R.id.otBtnInterrupt);
@@ -192,7 +180,7 @@ public class OngoingTask extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(ongoingTask.isStatus()){
+                if(ongoingTask.isSuccessful()){
                     Intent intent = new Intent(OngoingTask.this, MainActivity.class);
                     startActivity(intent);
                 }else{
@@ -238,11 +226,8 @@ public class OngoingTask extends AppCompatActivity {
                 //Detengo primero el counter
                 mCountDownTimer.cancel();
 
-                //Significa que la tarea fue ejecutada
-                ongoingTask.setState(false);
-
                 //Significa que la tarea no fue terminada exitosamente
-                ongoingTask.setStatus(false);
+                ongoingTask.setSuccessful(false);
 
                 //Almaceno los resultados en la base de datos
                 saveData();
@@ -264,6 +249,10 @@ public class OngoingTask extends AppCompatActivity {
     }
 
     public void saveData(){
+        if(ongoingTask.getCurrentPomodoro() > ongoingTask.getCount()){
+            ongoingTask.setCurrentPomodoro(ongoingTask.getCurrentPomodoro()-1);
+        }
+
         MainActivity.databaseReference.child("UIDUser").child(MainActivity.currentDate).child(ongoingTask.getId()).setValue(ongoingTask);
     }
 }

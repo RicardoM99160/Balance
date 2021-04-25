@@ -1,7 +1,5 @@
 package com.domos.balance.data;
 
-import android.os.Parcelable;
-
 import java.io.Serializable;
 
 public class Task  implements Serializable {
@@ -10,22 +8,22 @@ public class Task  implements Serializable {
     private String duration;
     private int count;
     private int emoji;
-    private boolean state; //true = sin realizar || false = realizada (exitosa o fallida) esto lo indica el radio buton de la tarjeta de la tarea
-    private boolean status; //true = exitosa || false = fallida
-    private Pomodoro[] pomodoros;
-    private Note notes;
+    private int currentPomodoro;
+    private boolean isStarted; //true = sin realizar || false = realizada (exitosa o fallida) esto lo indica el radio buton de la tarjeta de la tarea
+    private boolean isSuccessful; //true = exitosa || false = fallida
+    private String[] notes;
 
     public Task(){}
 
-    public Task(String id, String name, String duration, int count, int emoji, boolean state, boolean status, Pomodoro[] pomodoros, Note notes) {
+    public Task(String id, String name, String duration, int count, int emoji, int currentPomodoro, boolean isStarted, boolean isSuccessful, String[] notes) {
         this.id = id;
         this.name = name;
         this.duration = duration;
         this.count = count;
         this.emoji = emoji;
-        this.state = state;
-        this.status = status;
-        this.pomodoros = pomodoros;
+        this.currentPomodoro = currentPomodoro;
+        this.isStarted = isStarted;
+        this.isSuccessful = isSuccessful;
         this.notes = notes;
     }
 
@@ -35,7 +33,9 @@ public class Task  implements Serializable {
         this.duration = duration;
         this.count = count;
         this.emoji = emoji;
-        this.state = true;
+        this.isStarted = false;
+        this.isSuccessful = false;
+        this.currentPomodoro = 1;
     }
 
     public String getId() {
@@ -78,35 +78,35 @@ public class Task  implements Serializable {
         this.emoji = emoji;
     }
 
-    public boolean isState() {
-        return state;
+    public boolean isStarted() {
+        return isStarted;
     }
 
-    public void setState(boolean state) {
-        this.state = state;
+    public void setStarted(boolean started) {
+        this.isStarted = started;
     }
 
-    public boolean isStatus() {
-        return status;
+    public boolean isSuccessful() {
+        return isSuccessful;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public void setSuccessful(boolean successful) {
+        this.isSuccessful = successful;
     }
 
-    public Pomodoro[] getPomodoros() {
-        return pomodoros;
-    }
-
-    public void setPomodoros(Pomodoro[] pomodoros) {
-        this.pomodoros = pomodoros;
-    }
-
-    public Note getNotes() {
+    public String[] getNotes() {
         return notes;
     }
 
-    public void setNotes(Note notes) {
+    public void setNotes(String[] notes) {
         this.notes = notes;
+    }
+
+    public int getCurrentPomodoro() {
+        return currentPomodoro;
+    }
+
+    public void setCurrentPomodoro(int currentPomodoro) {
+        this.currentPomodoro = currentPomodoro;
     }
 }

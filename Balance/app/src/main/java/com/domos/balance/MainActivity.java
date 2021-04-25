@@ -141,12 +141,12 @@ public class MainActivity extends AppCompatActivity {
         yes_btn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v2) {
 
-                //Desde este momento la tarea se inicia
-                tasksList.get(recyclerViewTasks.getChildAdapterPosition(v)).setState(true);
+                //Paso 1 del ciclo de vida de la tarea
+                tasksList.get(recyclerViewTasks.getChildAdapterPosition(v)).setStarted(true);
 
                 Intent i = new Intent(MainActivity.this,OngoingTask.class);
+
                 i.putExtra("newOngoingTask", tasksList.get(recyclerViewTasks.getChildAdapterPosition(v)));
-                i.putExtra("currentPomodoro", ""+1);
                 startActivity(i);
                 confirmation.dismiss();
             }

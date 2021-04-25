@@ -39,7 +39,6 @@ public class TaskBreak extends AppCompatActivity {
 
         ongoingTask = (Task) getIntent().getSerializableExtra("ongoingTask");
         breakDuration = Long.parseLong(extras.getString("break"));
-        currentPomodoro = Integer.parseInt(extras.getString("currentPomodoro"));
         initialize();
         setupTimer();
 
@@ -62,10 +61,8 @@ public class TaskBreak extends AppCompatActivity {
             @Override
             public void onFinish() {
                 mCountDownBreak.cancel();
-                currentPomodoro++;
                 Intent intent = new Intent(TaskBreak.this, OngoingTask.class);
                 intent.putExtra("newOngoingTask", ongoingTask);
-                intent.putExtra("currentPomodoro", ""+currentPomodoro);
                 startActivity(intent);
             }
 
