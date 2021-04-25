@@ -3,7 +3,7 @@
 
     <!-- Homepage Strings -->
     <string name="hpTxtSaludo">Hola,</string>
-    <string name="hpTxtNombre">Gerardo Moreno</string>
+    <string name="hpTxtNombre">Nombre usuario</string>
     <string name="hpTxtTitulo">Mis tareas</string>
     <string name="hpEdtxtBuscarTarea">Buscar...</string>
     <string name="hpBtnNuevaTarea">Nueva Tarea</string>
@@ -29,7 +29,7 @@
     <string name="otTxtCantidad">Cantidad</string>
     <string name="otBtnTerminar">Terminar</string>
     <string name="otBtnInterrupcion">Interrupción</string>
-    
+
     <!-- Task Break Strings -->
     <string name="tbTxtTitleSuggestion">Pausa corta</string>
 
@@ -46,12 +46,14 @@
     <string name="lgTxtOlvideContra">Olvidé mi contraseña</string>
     <string name="lgBtnIniciarSesion">Iniciar sesión</string>
     <string name="lgBtnGoogle">Continuar con Google</string>
-    <string name="lgTxtSeleccionarInicio">O sino puedes</string>
+    <string name="lgTxtSeleccionarInicio">¿Necesitas una cuenta?</string>
+    <string name="lgTxtIrARegistro">Registrate aqui</string>
 
     <!-- Register Strings -->
-    <string name="rgTxtTitle">Crea una cuenta</string>
+    <string name="rgTxtTitle">Registrate</string>
     <string name="rgTxtSubtitle">Y comienza a usar Balance</string>
     <string name="rgHintCorreo">Correo electrónico</string>
+    <string name="rgHintNombre">Nombre</string>
     <string name="rgHintContra">Contraseña</string>
     <string name="rgHintConfirmarContra">Confirmar Contraseña</string>
     <string name="rgBtnCrearCuenta">Crear Cuenta</string>

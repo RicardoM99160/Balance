@@ -18,6 +18,8 @@ import android.widget.TextView;
 
 import com.domos.balance.adapters.TaskAdapter;
 import com.domos.balance.data.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,7 +33,10 @@ import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
+    private FirebaseAuth mAuth;
+
     ImageView btnUsericon;
+    TextView tvNombreUsuario;
     Button btnNewTask;
     RecyclerView recyclerViewTasks;
     LinearLayout linearLayoutWithoutTasks;
@@ -50,8 +55,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        mAuth = FirebaseAuth.getInstance();
         currentDate = sdf.format(new Date());
-        actualUser = databaseReference.child("UIDUser").child(currentDate);
+        actualUser = databaseReference.child(mAuth.getUid()).child(currentDate);
+
+
 
         //Inicializo el recyclerView antes, para tratar que las tareas se carguen rápido
         //TODO: Buscar la manera de cargar los datos antes que se cargue la vista (si se puede sino así quedará)
@@ -61,6 +70,15 @@ public class MainActivity extends AppCompatActivity {
         initialize();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser == null){
+            Intent intent = new Intent(MainActivity.this, Login.class);
+            startActivity(intent);
+        }
+    }
 
     public void initialize(){
 
@@ -68,11 +86,14 @@ public class MainActivity extends AppCompatActivity {
         btnUsericon = (ImageView) findViewById(R.id.hpBtnUsericon);
         btnNewTask = (Button) findViewById(R.id.hpBtnNewtask);
         searchBar = (EditText) findViewById(R.id.hpSearchbar);
-
+        tvNombreUsuario = (TextView) findViewById(R.id.maTvNombre);
         buttonSetUp();
+        getUserData();
+
     }
 
     //Configuración del recyclerView que muestra las tareas
+
     public void selectTaskSetUp(){
 
         tasksList = new ArrayList<>();
@@ -160,9 +181,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    //TODO: Esto deberia de ser un listener, y no va aqui
+    public void logout(View v){
+        FirebaseAuth.getInstance().signOut();
+        Intent intent = new Intent(MainActivity.this, Login.class);
+        startActivity(intent);
 
+    }
     //Metodo para asignar OnClickListener a todos los botones
     public void buttonSetUp(){
+
+
         btnUsericon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -181,7 +210,31 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public void getUserData(){
 
+        //logged with google
+        if(mAuth.getCurrentUser().getProviderData().equals("google.com")){
+
+            String nombreUsuario = mAuth.getCurrentUser().getDisplayName();
+            tvNombreUsuario.setText(nombreUsuario);
+            return;
+        }
+        //Connects to Firebase and gets the user name.
+        String uid = mAuth.getUid();
+        DatabaseReference uidRef = databaseReference.child(uid);
+        ValueEventListener eventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String nombreUsuario = dataSnapshot.child("Nombre").getValue(String.class);
+                tvNombreUsuario.setText(nombreUsuario);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {}
+        };
+        uidRef.addListenerForSingleValueEvent(eventListener);
+
+    }
 
 
 

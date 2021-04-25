@@ -29,7 +29,7 @@
             android:fontFamily="@font/fuente_2"/>
 
         <TextView
-            android:id="@+id/txtNombre"
+            android:id="@+id/maTvNombre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/hpTxtNombre"
@@ -76,8 +76,9 @@
                 android:id="@+id/hpBtnSettings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/settings"
-                android:background="?android:attr/selectableItemBackground"/>
+                android:background="?android:attr/selectableItemBackground"
+                android:onClick="logout"
+                android:src="@drawable/settings" />
         </LinearLayout>
 
         <LinearLayout

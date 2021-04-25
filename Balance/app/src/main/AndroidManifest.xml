@@ -9,19 +9,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents.NoActionBar.Bridge">
-        <activity android:name=".TaskBreak"></activity>
-        <activity android:name=".Register" />
-        <activity android:name=".Login" />
-        <activity android:name=".Wellcome" />
-        <activity android:name=".OngoingTask" />
-        <activity android:name=".CreateTask" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".TaskBreak" />
+        <activity android:name=".Register" />
+        <activity android:name=".Login" />
+        <activity android:name=".Wellcome" />
+        <activity android:name=".OngoingTask" />
+        <activity android:name=".CreateTask" />
+        <activity android:name=".MainActivity"/>
     </application>
 
 </manifest>
