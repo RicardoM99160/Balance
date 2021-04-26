@@ -7,14 +7,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class Wellcome extends AppCompatActivity {
+public class Welcome extends AppCompatActivity {
 
     Button btnInicioSesion, btnRegistrarse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_wellcome);
+        setContentView(R.layout.activity_welcome);
 
         btnInicioSesion = (Button) findViewById(R.id.wBtnLogin);
         btnRegistrarse = (Button) findViewById(R.id.wBtnSignUp);
@@ -22,7 +22,7 @@ public class Wellcome extends AppCompatActivity {
         btnInicioSesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Wellcome.this, Login.class);
+                Intent intent = new Intent(Welcome.this, Login.class);
                 startActivity(intent);
             }
         });
@@ -30,7 +30,7 @@ public class Wellcome extends AppCompatActivity {
         btnRegistrarse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Wellcome.this, Register.class);
+                Intent intent = new Intent(Welcome.this, Register.class);
                 startActivity(intent);
             }
         });

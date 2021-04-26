@@ -18,7 +18,7 @@
         </activity>
         <activity android:name=".Register" />
         <activity android:name=".Login" />
-        <activity android:name=".Wellcome" />
+        <activity android:name=".Welcome" />
         <activity android:name=".OngoingTask" />
         <activity android:name=".CreateTask" />
         <activity android:name=".MainActivity"/>
