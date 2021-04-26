@@ -14,10 +14,10 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.domos.balance.data.Task;
-
 import java.text.SimpleDateFormat;
 import java.util.concurrent.TimeUnit;
+
+import com.domos.balance.data.Task;
 
 public class OngoingTask extends AppCompatActivity {
 
@@ -98,6 +98,7 @@ public class OngoingTask extends AppCompatActivity {
 
                     //Le muestro el mensaje de exito al usuario
                     txtCurrentPomodoro.setText("Tarea finalizada");
+                    txtTimer.setTextSize(55);
                     txtTimer.setText("Felicidades");
                 }
 

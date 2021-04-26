@@ -1,6 +1,5 @@
 package com.domos.balance.adapters;
 
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

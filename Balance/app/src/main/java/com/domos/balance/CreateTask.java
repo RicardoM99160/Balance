@@ -31,7 +31,7 @@ public class CreateTask extends AppCompatActivity {
     GridView gridViewEmojis;
     Button btnAccept, btnCancel;
     ImageView btnEmoji;
-    ImageButton btnReturn, btnSettings;
+    ImageButton btnReturn;
     EditText edtTaskName;
 
 
@@ -232,13 +232,6 @@ public class CreateTask extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(CreateTask.this,MainActivity.class);
                 startActivity(intent);
-            }
-        });
-
-        btnSettings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(CreateTask.this, "No existen los ajustes jaja", Toast.LENGTH_SHORT).show();
             }
         });
     }
