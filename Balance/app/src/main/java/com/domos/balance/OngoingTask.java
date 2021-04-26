@@ -30,7 +30,7 @@ public class OngoingTask extends AppCompatActivity {
     ImageView ivEmoji, ivBreakEmoji;
     TextView txtTaskname, txtDuracion, txtCount,  txtTimer, txtCurrentPomodoro, txtBreakTimer, txtBreakTitleSuggestion;
     Button btnFinish, btnInterrupt;
-    ImageButton btnReturn;
+    ImageButton btnReturn, btnEndBreak;
     ConstraintLayout constraintLayoutBreak, constraintLayoutOngoingTask;
 
 
@@ -47,6 +47,7 @@ public class OngoingTask extends AppCompatActivity {
 
         //Inicializando la interfaz
         inicialize();
+        updateUI("Work");
 
         //Inicializando el Timer
         setPomodoroTimer(ongoingTask.getDuration());
@@ -55,11 +56,12 @@ public class OngoingTask extends AppCompatActivity {
 
         //Se inicia el timer si todavía hay pomodoros pendientes
         //Sino se termina
-        if (ongoingTask.getCurrentPomodoro() <= ongoingTask.getCount()){
+        /*if (ongoingTask.getCurrentPomodoro() <= ongoingTask.getCount()){
             mCountDownTimer.start();
         }else {
             mCountDownTimer.onFinish();
-        }
+        }*/
+        mCountDownTimer.start();
 
     }
 
@@ -68,6 +70,9 @@ public class OngoingTask extends AppCompatActivity {
             @Override
             public void onFinish() {
 
+                //Cancelo el timer
+                this.cancel();
+
                 //AqUI SE MUEVE A LA OTRA VISTA DE DESCANSO
                 // DEBE COMPROBAR QUE NO SE HAYA TERMINADO TO-DO :(
                 if(ongoingTask.getCurrentPomodoro() <= ongoingTask.getCount()){
@@ -75,17 +80,15 @@ public class OngoingTask extends AppCompatActivity {
                     //Se incrementa el pomodoro actual
                     ongoingTask.setCurrentPomodoro(ongoingTask.getCurrentPomodoro()+1);
 
-                    //Cuando se termine un pomodoro esto envia a la siguiente actividad para que el usuario tome su descanso
-                    /*Intent intent = new Intent(OngoingTask.this, TaskBreak.class);
-                    intent.putExtra("break", ""+pomodoroRest);
-                    intent.putExtra("ongoingTask", ongoingTask);
-                    startActivity(intent);*/
+                    //Actualizo la interfaz
                     updateUI("Break");
+
+                    //Inicio el timer del break
                     breakTimer.start();
 
                 }else {
 
-                    //Si se llega a este punto significa que la tarea fue terminada con exito
+                    //TODO: Si se llega a este punto significa que la tarea fue terminada con exito
 
                     //Significa que la tarea fue terminada con exito
                     ongoingTask.setSuccessful(true);
@@ -96,7 +99,6 @@ public class OngoingTask extends AppCompatActivity {
                     //Le muestro el mensaje de exito al usuario
                     txtCurrentPomodoro.setText("Tarea finalizada");
                     txtTimer.setText("Felicidades");
-                    this.cancel();
                 }
 
             }
@@ -111,6 +113,7 @@ public class OngoingTask extends AppCompatActivity {
         breakTimer = new CountDownTimer(pomodoroRest, 1000) {
             @Override
             public void onFinish() {
+                this.cancel();
                 updateUI("Work");
                 if(ongoingTask.getCurrentPomodoro() <= ongoingTask.getCount()){
                     mCountDownTimer.start();
@@ -152,6 +155,7 @@ public class OngoingTask extends AppCompatActivity {
         btnFinish = (Button) findViewById(R.id.otBtnFinish);
         btnInterrupt = (Button) findViewById(R.id.otBtnInterrupt);
         btnReturn = (ImageButton) findViewById(R.id.otBtnReturn);
+        btnEndBreak = (ImageButton) findViewById(R.id.tbBtnEndBreak);
 
         buttonSetUp();
 
@@ -222,6 +226,13 @@ public class OngoingTask extends AppCompatActivity {
                     showDialog(title, subtitle, confirm, cancel);
                 }
 
+            }
+        });
+
+        btnEndBreak.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                breakTimer.onFinish();
             }
         });
 
@@ -297,7 +308,7 @@ public class OngoingTask extends AppCompatActivity {
                 constraintLayoutOngoingTask.setVisibility(View.VISIBLE);
                 break;
         }
-
+        txtCurrentPomodoro.setText("POMODORO "+ongoingTask.getCurrentPomodoro());
 
     }
 }

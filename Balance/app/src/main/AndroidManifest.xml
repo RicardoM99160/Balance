@@ -16,7 +16,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TaskBreak" />
         <activity android:name=".Register" />
         <activity android:name=".Login" />
         <activity android:name=".Wellcome" />
