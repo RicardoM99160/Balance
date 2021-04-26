@@ -9,11 +9,14 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.domos.balance.adapters.TaskAdapter;
@@ -185,23 +188,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    //TODO: Esto deberia de ser un listener, y no va aqui
-    public void logout(View v){
-        FirebaseAuth.getInstance().signOut();
-        Intent intent = new Intent(MainActivity.this, Login.class);
-        startActivity(intent);
 
-    }
+
+
     //Metodo para asignar OnClickListener a todos los botones
+
+
+
     public void buttonSetUp(){
 
 
         btnUsericon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(MainActivity.this,"Esto no es un boton", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(MainActivity.this, Welcome.class);
-                startActivity(intent);
+                showPopup(v);
             }
         });
 
@@ -214,6 +214,40 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    //
+    public void showPopup(View v) {
+        PopupMenu popup = new PopupMenu(this, v);
+        MenuInflater inflater = popup.getMenuInflater();
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                Intent intent;
+                switch (item.getItemId()) {
+
+                    case R.id.menuitemMiPerfil:
+                        //TODO: Programar activiy Mi Perfil
+                        return true;
+
+                    //el segundo cierra sesion
+                    case R.id.menuitemLogout:
+
+                        FirebaseAuth.getInstance().signOut();
+                        intent = new Intent(MainActivity.this, Welcome.class);
+                        startActivity(intent);
+
+                        return true;
+                    default:
+                        return false;
+                }
+
+            }
+        });
+
+        inflater.inflate(R.menu.menu_principal, popup.getMenu());
+        popup.show();
+    }
+
+    //
     public void getUserData() {
 
         //logged with google

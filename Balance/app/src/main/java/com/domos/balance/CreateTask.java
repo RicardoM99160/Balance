@@ -69,7 +69,6 @@ public class CreateTask extends AppCompatActivity {
         btnAccept = (Button) findViewById(R.id.otBtnFinish);
         btnCancel = (Button) findViewById(R.id.otBtnInterrupt);
         btnReturn = (ImageButton) findViewById(R.id.otBtnReturn);
-        btnSettings = (ImageButton) findViewById(R.id.otBtnSettings);
         edtTaskName = (EditText) findViewById(R.id.ctEdtTaskname);
 
         //Configuración del imageView que funciona como botón para mostrar agregar emoji

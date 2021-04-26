@@ -16,26 +16,26 @@
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.377">
+        app:layout_constraintVertical_bias="0.3">
 
         <TextView
             android:id="@+id/txtSaludo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
+            android:fontFamily="@font/fuente_2"
             android:text="@string/hpTxtSaludo"
             android:textColor="@color/white"
-            android:textSize="30sp"
-            android:fontFamily="@font/fuente_2"/>
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/maTvNombre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/fuente_2_bold"
             android:text="@string/hpTxtNombre"
             android:textColor="@color/white"
-            android:textSize="30sp"
-            android:fontFamily="@font/fuente_2_bold"/>
+            android:textSize="30sp" />
     </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -54,11 +54,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="32dp"
             android:layout_marginEnd="21dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.142"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -72,13 +73,6 @@
                 android:textColor="@color/black"
                 android:textSize="24sp" />
 
-            <ImageButton
-                android:id="@+id/hpBtnSettings"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="?android:attr/selectableItemBackground"
-                android:onClick="logout"
-                android:src="@drawable/settings" />
         </LinearLayout>
 
         <LinearLayout
@@ -130,7 +124,7 @@
             android:layout_height="53dp"
             android:layout_marginStart="60dp"
             android:layout_marginEnd="60dp"
-            android:layout_marginBottom="70dp"
+            android:layout_marginBottom="48dp"
             android:background="@drawable/custom_button"
             android:backgroundTint="@color/button_red"
             android:fontFamily="@font/fuente_2_bold"
@@ -142,20 +136,23 @@
 
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/hpRecyclerVTasks"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="352dp"
+            android:layout_height="301dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="100dp"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="170dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.473"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.384" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -171,19 +168,19 @@
 
     <EditText
         android:id="@+id/hpSearchbar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="278dp"
+        android:layout_height="43dp"
         android:layout_marginStart="80dp"
         android:layout_marginEnd="80dp"
         android:background="@drawable/search_bar"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="@string/hpEdtxtBuscarTarea"
-        android:textSize="14sp"
         android:drawableEnd="@drawable/search"
-        android:paddingVertical="10dp"
-        android:paddingHorizontal="25dp"
+        android:ems="10"
         android:fontFamily="@font/fuente_2"
+        android:hint="@string/hpEdtxtBuscarTarea"
+        android:inputType="textPersonName"
+        android:paddingHorizontal="25dp"
+        android:paddingVertical="10dp"
+        android:textSize="14sp"
 
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
