@@ -6,9 +6,9 @@
 
 | Nombres                          | Carnet   | Grupo |
 | -------------------------------- | -------- | ----- |
-| Brenda Nathaly Palencia Martinez | PM170641 | 03T   | 
-| Gerardo Alexander Rivera Moreno  | RM170126 | 03T   |
-| José Ricardo Majano De Paz       | MD170149 | 03T   |
+| Brenda Nathaly Palencia Martinez | PM170641 | 01T   | 
+| Gerardo Alexander Rivera Moreno  | RM170126 | 01T   |
+| José Ricardo Majano De Paz       | MD170149 | 01T   |
 
 Balance es una aplicacion Android que facilita la administración del tiempo. Con Balance se puede crear una lista de tareas para luego trabajar en cada una con el método Pomodoro. La aplicación registra el número de Pomodoros y la duración de cada ciclo. Toda la información del usuario se guarda en la nube. 
 
