@@ -106,4 +106,9 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolderTask
 
         }
     }
+
+    public void filterList(ArrayList<Task> filteredList){
+        tasks = filteredList;
+        notifyDataSetChanged();
+    }
 }
