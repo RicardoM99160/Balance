@@ -9,6 +9,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -50,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
     String strProvider;
 
     ArrayList<Task> tasksList;
+    TaskAdapter adapter;
 
     public static FirebaseDatabase database = FirebaseDatabase.getInstance();
     public static DatabaseReference databaseReference = database.getReference("usuarios");
@@ -96,6 +99,8 @@ public class MainActivity extends AppCompatActivity {
         btnNewTask = (Button) findViewById(R.id.hpBtnNewtask);
         searchBar = (EditText) findViewById(R.id.hpSearchbar);
         tvNombreUsuario = (TextView) findViewById(R.id.maTvNombre);
+
+        searchbarSetUp();
         buttonSetUp();
         getUserData();
 
@@ -128,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
                     linearLayoutWithoutTasks.setVisibility(View.GONE);
                     recyclerViewTasks.setVisibility(View.VISIBLE);
                     searchBar.setVisibility(View.VISIBLE);
-                    TaskAdapter adapter = new TaskAdapter(tasksList);
+                    adapter = new TaskAdapter(tasksList);
 
                     //Evento de click al seleccionar una task
 
@@ -227,6 +232,34 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public void searchbarSetUp(){
+        searchBar.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                filter(s.toString());
+            }
+        });
+    }
+
+    private void filter(String text){
+        ArrayList<Task> filterdList = new ArrayList<>();
+        for (Task task: tasksList){
+            if(task.getName().toLowerCase().contains(text.toLowerCase())){
+                filterdList.add(task);
+            }
+        }
+        adapter.filterList(filterdList);
+    }
 
     //Metodo para asignar OnClickListener a todos los botones
 
