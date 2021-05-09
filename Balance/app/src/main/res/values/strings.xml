@@ -29,6 +29,7 @@
     <string name="otTxtCantidad">Cantidad</string>
     <string name="otBtnTerminar">Terminar</string>
     <string name="otBtnInterrupcion">Interrupción</string>
+    <string name="otBtnSalir">Salir</string>
 
     <!-- Task Break Strings -->
     <string name="tbTxtTitleSuggestion">Pausa corta</string>

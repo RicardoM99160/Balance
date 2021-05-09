@@ -6,6 +6,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -32,7 +33,7 @@ public class OngoingTask extends AppCompatActivity {
     Button btnFinish, btnInterrupt;
     ImageButton btnReturn, btnEndBreak;
     ConstraintLayout constraintLayoutBreak, constraintLayoutOngoingTask;
-
+    MediaPlayer mediaPlayer;
 
 
     @Override
@@ -61,8 +62,9 @@ public class OngoingTask extends AppCompatActivity {
         }else {
             mCountDownTimer.onFinish();
         }*/
+        mediaPlayer = MediaPlayer.create(OngoingTask.this, R.raw.bell);
+        mediaPlayer.start();
         mCountDownTimer.start();
-
     }
 
     protected void setupTimer(){
@@ -84,6 +86,8 @@ public class OngoingTask extends AppCompatActivity {
                     updateUI("Break");
 
                     //Inicio el timer del break
+                    //mediaPlayer = MediaPlayer.create(OngoingTask.this, R.raw.bell);
+                    mediaPlayer.start();
                     breakTimer.start();
 
                 }else {
@@ -100,6 +104,7 @@ public class OngoingTask extends AppCompatActivity {
                     txtCurrentPomodoro.setText("Tarea finalizada");
                     txtTimer.setTextSize(55);
                     txtTimer.setText("Felicidades");
+                    btnFinish.setText(R.string.otBtnSalir);
                 }
 
             }
@@ -117,6 +122,8 @@ public class OngoingTask extends AppCompatActivity {
                 this.cancel();
                 updateUI("Work");
                 if(ongoingTask.getCurrentPomodoro() <= ongoingTask.getCount()){
+                    //mediaPlayer = MediaPlayer.create(OngoingTask.this, R.raw.bell);
+                    mediaPlayer.start();
                     mCountDownTimer.start();
                 }else {
                     mCountDownTimer.onFinish();
@@ -182,8 +189,8 @@ public class OngoingTask extends AppCompatActivity {
                 break;
 
             case "10 sec - 5 sec":
-                pomodoroDuration = TimeUnit.SECONDS.toMillis(10);
-                pomodoroRest = TimeUnit.SECONDS.toMillis(5);
+                pomodoroDuration = TimeUnit.SECONDS.toMillis(5);
+                pomodoroRest = TimeUnit.SECONDS.toMillis(3);
                 break;
         }
 
@@ -195,12 +202,17 @@ public class OngoingTask extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                //Obteniendo los strings que seran asignados a los elementos del Dialog
-                int title = R.string.cdOngoingTaskFinishTitle;
-                int subtitle = R.string.cdOngoingTaskFinishSubtitle;
-                int confirm = R.string.cdOngoingTaskConfirmar;
-                int cancel = R.string.cdOngoingTaskCancelar;
-                showDialog(title, subtitle, confirm, cancel);
+                if(ongoingTask.isSuccessful()){
+                    Intent intent = new Intent(OngoingTask.this, MainActivity.class);
+                    startActivity(intent);
+                }else{
+                    //Obteniendo los strings que seran asignados a los elementos del Dialog
+                    int title = R.string.cdOngoingTaskFinishTitle;
+                    int subtitle = R.string.cdOngoingTaskFinishSubtitle;
+                    int confirm = R.string.cdOngoingTaskConfirmar;
+                    int cancel = R.string.cdOngoingTaskCancelar;
+                    showDialog(title, subtitle, confirm, cancel);
+                }
             }
         });
 
