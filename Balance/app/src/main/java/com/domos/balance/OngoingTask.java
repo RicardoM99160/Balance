@@ -14,10 +14,10 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.domos.balance.data.Task;
+
 import java.text.SimpleDateFormat;
 import java.util.concurrent.TimeUnit;
-
-import com.domos.balance.data.Task;
 
 public class OngoingTask extends AppCompatActivity {
 
@@ -295,7 +295,7 @@ public class OngoingTask extends AppCompatActivity {
             ongoingTask.setCurrentPomodoro(ongoingTask.getCurrentPomodoro()-1);
         }
 
-        MainActivity.databaseReference.child("UIDUser").child(MainActivity.currentDate).child(ongoingTask.getId()).setValue(ongoingTask);
+        MainActivity.databaseReference.child(MainActivity.userUID).child("TareasPendientes").child(ongoingTask.getId()).setValue(ongoingTask);
     }
 
     public void updateUI(String ui){
