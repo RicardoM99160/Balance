@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.domos.balance.adapters.TaskAdapter;
 import com.domos.balance.data.Task;
@@ -114,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
                 for(DataSnapshot dato : snapshot.getChildren()){
                     Task task = dato.getValue(Task.class);
                     task.setId(dato.getKey());
+                    Log.i("KK", task.getId());
                     tasksList.add(task);
                 }
 
@@ -132,7 +135,23 @@ public class MainActivity extends AppCompatActivity {
                     adapter.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            showDialog(v);
+
+                            //Si la tarea no ha sido iniciada (isStartetd = false) entonces se muestra el modal para iniciar la tarea
+                            if(!tasksList.get(recyclerViewTasks.getChildAdapterPosition(v)).isStarted()){
+                                showDialog(v, "iniciar");
+                            }else{
+                                //Si la tarea ya fue iniciada una vez (isStarted = true) entonces se muestra el siguiente mensaje
+                                Toast.makeText(MainActivity.this, "Ya no se puede realizar esta tarea, ya fue realizada", Toast.LENGTH_SHORT).show();
+                            }
+
+                        }
+                    });
+
+                    adapter.onLongClick(new View.OnLongClickListener() {
+                        @Override
+                        public boolean onLongClick(View v) {
+                            showDialog(v, "archivar");
+                            return false;
                         }
                     });
                     recyclerViewTasks.setAdapter(adapter);
@@ -144,7 +163,8 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void showDialog(View v){
+    public void showDialog(View v, String action){
+
         //Instanciando dialogo de yes/no
         CustomYesNoDialog confirmation = new CustomYesNoDialog(MainActivity.this);
 
@@ -157,25 +177,42 @@ public class MainActivity extends AppCompatActivity {
         Button yes_btn = (Button) confirmation.findViewById(R.id.cdBtnYes);
         Button no_btn = (Button) confirmation.findViewById(R.id.cdBtnNo);
 
-        txtTitle.setText(R.string.cdHomepageTitle);
-        txtSubtitle.setVisibility(View.GONE);
+        switch(action){
+            case "iniciar":
+                txtTitle.setText(R.string.cdHomepageStartTaskTitle);
+                txtSubtitle.setVisibility(View.GONE);
+                break;
+            case "archivar":
+                txtTitle.setText(R.string.cdHomepageRemoveTaskTitle);
+                txtSubtitle.setVisibility(View.VISIBLE);
+                txtSubtitle.setText(R.string.cdHomepageRemoveTaskSubtitle);
+        }
         yes_btn.setText(R.string.cdHomepageConfirmar);
         no_btn.setText(R.string.cdHomepageCancelar);
 
 
         confirmation.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
+        Task tareaSeleccionada = tasksList.get(recyclerViewTasks.getChildAdapterPosition(v));
+
         //Agregando onClickListener a los botones del diálogo
         yes_btn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v2) {
 
-                //Paso 1 del ciclo de vida de la tarea
-                tasksList.get(recyclerViewTasks.getChildAdapterPosition(v)).setStarted(true);
+                switch(action){
+                    case "iniciar":
+                        //Paso 1 del ciclo de vida de la tarea
+                        tareaSeleccionada.setStarted(true);
+                        Intent i = new Intent(MainActivity.this,OngoingTask.class);
+                        i.putExtra("newOngoingTask", tareaSeleccionada);
+                        startActivity(i);
+                        break;
+                    case "archivar":
+                        databaseReference.child(MainActivity.userUID).child("TareasArchivadas").child(currentDate).push().setValue(tareaSeleccionada);
+                        databaseReference.child(MainActivity.userUID).child("TareasPendientes").child(tareaSeleccionada.getId()).setValue(null);
+                }
 
-                Intent i = new Intent(MainActivity.this,OngoingTask.class);
 
-                i.putExtra("newOngoingTask", tasksList.get(recyclerViewTasks.getChildAdapterPosition(v)));
-                startActivity(i);
                 confirmation.dismiss();
             }
         });
@@ -192,8 +229,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     //Metodo para asignar OnClickListener a todos los botones
-
-
 
     public void buttonSetUp(){
 

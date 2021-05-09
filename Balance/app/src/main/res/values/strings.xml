@@ -61,7 +61,9 @@
     <string name="rgTxtSeleccionarInicio">O sino puedes</string>
 
     <!-- Custom Dialog Strings -->
-    <string name="cdHomepageTitle">¿Desea iniciar la tarea?</string>
+    <string name="cdHomepageStartTaskTitle">¿Desea iniciar la tarea?</string>
+    <string name="cdHomepageRemoveTaskTitle">¿Desea archivar la tarea?</string>
+    <string name="cdHomepageRemoveTaskSubtitle">Una vez archivada la tarea no la podrá observar en la lista</string>
     <string name="cdHomepageConfirmar">Si</string>
     <string name="cdHomepageCancelar">No</string>
     <string name="cdOngoingTaskReturnTitle">¿Desea abandonar la tarea actual?</string>
