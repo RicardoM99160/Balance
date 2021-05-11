@@ -34,7 +34,7 @@
             android:id="@+id/upTxtUserAntiquity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ususario por 124 días"
+            android:text="Creaste tú cuenta hace 124 días"
             android:textColor="@color/txt_gray"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -193,9 +193,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="20dp"
-        android:src="@drawable/resource_return"
+        android:layout_marginTop="32dp"
         android:background="?android:attr/selectableItemBackground"
+        android:src="@drawable/resource_return"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

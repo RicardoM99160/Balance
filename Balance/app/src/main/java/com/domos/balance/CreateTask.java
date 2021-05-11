@@ -18,10 +18,15 @@ import android.widget.Toast;
 
 import com.domos.balance.adapters.EmojiAdapter;
 import com.domos.balance.data.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 public class CreateTask extends AppCompatActivity {
 
@@ -39,10 +44,16 @@ public class CreateTask extends AppCompatActivity {
     String[] durations = new String[]{"25 min - 5 min","45 min - 15 min","50 min - 10 min", "10 sec - 5 sec"}; //utilizado por NumberPicker numDuration
     Boolean timeIsSelected;
     int step = 0, stepEmoji = 3, defaultEmoji = R.drawable.nervous;
+
+    int vIntNumberTasks=0;
+
+
     EmojiAdapter adapterEmojis;
     Task newTask;
     SimpleDateFormat sdf;
     String currentDate;
+    String numPendingTasks;
+
 
     //Todavía no lo estoy implementando
 
@@ -189,7 +200,30 @@ public class CreateTask extends AppCompatActivity {
 
                         //Envio la tarea a la base de datos
                         //TODO: Cuando ya haya agregado la autenticación, reemplazar UIDUser por el UID de el usuario loggeado
+
+
                         MainActivity.databaseReference.child(MainActivity.userUID).child("TareasPendientes").push().setValue(newTask);
+
+
+                        vIntNumberTasks = 0;
+                        DatabaseReference mDatabase =  MainActivity.databaseReference.child(MainActivity.userUID).child("misTareasPendientes");
+                        mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                String tareasPendientes = dataSnapshot.getValue(String.class);
+                                if(tareasPendientes!=null)
+                                    vIntNumberTasks = Integer.valueOf(tareasPendientes)+1;
+
+                                mDatabase.setValue(vIntNumberTasks);
+
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        });
+
 
 
                         //TODO: aquí debo guardar la nueva tarea en el arreglo
@@ -199,6 +233,9 @@ public class CreateTask extends AppCompatActivity {
 
                         Intent intent = new Intent(CreateTask.this, MainActivity.class);
                         startActivity(intent);
+
+
+
                     }else{
                         Toast.makeText(getApplicationContext(), "Coloque un nombre a la tarea", Toast.LENGTH_SHORT).show();
                         return;

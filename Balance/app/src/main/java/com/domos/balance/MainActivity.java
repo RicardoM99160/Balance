@@ -50,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
     EditText searchBar;
 
     String strProvider;
-
     ArrayList<Task> tasksList;
     TaskAdapter adapter;
     Task tareaSeleccionada;
@@ -60,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
     public static SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
     public static String currentDate;
     public static String userUID;
+    public static String nombreUsuario;
+
     Query userTasks;
 
     @Override
@@ -126,7 +127,6 @@ public class MainActivity extends AppCompatActivity {
                 for(DataSnapshot dato : snapshot.getChildren()){
                     Task task = dato.getValue(Task.class);
                     task.setId(dato.getKey());
-                    Log.i("KK", task.getId());
                     tasksList.add(task);
                 }
 
@@ -333,7 +333,7 @@ public class MainActivity extends AppCompatActivity {
         if (user == null)
             return;
 
-        String nombreUsuario;
+
 
         Thread.sleep(1000);
         strProvider = mAuth.getInstance().

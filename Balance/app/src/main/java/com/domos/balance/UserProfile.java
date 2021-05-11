@@ -9,8 +9,13 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class UserProfile extends AppCompatActivity {
+import com.google.firebase.auth.FirebaseAuth;
 
+import java.sql.Timestamp;
+import java.util.concurrent.TimeUnit;
+
+public class UserProfile extends AppCompatActivity {
+    private FirebaseAuth mAuth;
     ImageButton btnReturn;
     TextView txtUserName, txtUserAntiquity, txtCompletedTasks, txtFailedTasks, txtPendingTasks;
     ImageView imgEmojiFav;
@@ -20,8 +25,10 @@ public class UserProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
-
         initialize();
+        getUserStatistics();
+
+
     }
 
     public void initialize(){
@@ -41,5 +48,21 @@ public class UserProfile extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        txtUserName.setText(MainActivity.nombreUsuario);
     }
+
+
+    private void getUserStatistics(){
+        mAuth = FirebaseAuth.getInstance();
+        String something;
+
+        Long timestamp =  mAuth.getInstance().
+                getAccessToken(false).getResult().getIssuedAtTimestamp();
+        Long userDaysSinceCreation = TimeUnit.MILLISECONDS.toDays(timestamp);
+
+        txtUserAntiquity.setText("Usuario por "+userDaysSinceCreation+" dias");
+    }
+
+
 }

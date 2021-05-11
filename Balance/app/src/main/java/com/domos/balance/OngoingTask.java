@@ -16,6 +16,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.domos.balance.data.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.concurrent.TimeUnit;
@@ -34,7 +37,7 @@ public class OngoingTask extends AppCompatActivity {
     ImageButton btnReturn, btnEndBreak;
     ConstraintLayout constraintLayoutBreak, constraintLayoutOngoingTask;
     MediaPlayer mediaPlayer;
-
+    int numSuccesfulTasks, numFailedTasks;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,6 +108,27 @@ public class OngoingTask extends AppCompatActivity {
                     txtTimer.setTextSize(55);
                     txtTimer.setText("Felicidades");
                     btnFinish.setText(R.string.otBtnSalir);
+
+
+                    MainActivity.databaseReference.child(MainActivity.userUID).child("tareasCompletadas").addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot snapshot) {
+                            if (snapshot.getValue() == null)
+                                numSuccesfulTasks = 0;
+                            else
+                                numSuccesfulTasks =  snapshot.getValue(Integer.class);
+
+                        }
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                        }
+                    });
+
+
+
+
+
+
                 }
 
             }
@@ -284,8 +308,27 @@ public class OngoingTask extends AppCompatActivity {
                 //Significa que la tarea no fue terminada exitosamente
                 ongoingTask.setSuccessful(false);
 
+
+
+
+
                 //Almaceno los resultados en la base de datos
                 saveData();
+
+                MainActivity.databaseReference.child(MainActivity.userUID).child("tareasFallidas").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot snapshot) {
+                        if (snapshot.getValue() == null)
+                            numFailedTasks = 0;
+                        else
+                            numFailedTasks =  snapshot.getValue(Integer.class);
+
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                    }
+                });
+
 
                 //Redirijo al MainActivity
                 Intent intent = new Intent(OngoingTask.this, MainActivity.class);
@@ -309,6 +352,9 @@ public class OngoingTask extends AppCompatActivity {
         }
 
         MainActivity.databaseReference.child(MainActivity.userUID).child("TareasPendientes").child(ongoingTask.getId()).setValue(ongoingTask);
+
+
+
     }
 
     public void updateUI(String ui){
