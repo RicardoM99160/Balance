@@ -26,7 +26,7 @@ public class Splash extends AppCompatActivity {
         };
         //TODO: Regresar tiempo a 3 segundos
         Timer tiempo = new Timer();
-        tiempo.schedule(tarea, 2000);
+        tiempo.schedule(tarea, 3000);
 
     }
 }

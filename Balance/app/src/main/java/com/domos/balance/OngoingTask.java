@@ -157,7 +157,8 @@ public class OngoingTask extends AppCompatActivity {
         ivEmoji.setImageResource(ongoingTask.getEmoji());
         txtTaskname.setText(ongoingTask.getName());
         txtDuracion.setText(ongoingTask.getDuration());
-        txtCount.setText(ongoingTask.getCount()+ " Pomodoros");
+        String cantidadPomodoros = ongoingTask.getCount() == 1 ? " pomodoro" : " pomodoros";
+        txtCount.setText(ongoingTask.getCount()+ cantidadPomodoros);
         txtCurrentPomodoro.setText("POMODORO "+ongoingTask.getCurrentPomodoro());
 
         btnFinish = (Button) findViewById(R.id.otBtnFinish);

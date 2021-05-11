@@ -187,10 +187,10 @@ public class CreateTask extends AppCompatActivity {
                         int emoji = (Integer) btnEmoji.getTag();
                         newTask = new Task(id,name,duration, MainActivity.currentDate,count,emoji);
 
-
                         //Envio la tarea a la base de datos
                         //TODO: Cuando ya haya agregado la autenticación, reemplazar UIDUser por el UID de el usuario loggeado
                         MainActivity.databaseReference.child(MainActivity.userUID).child("TareasPendientes").push().setValue(newTask);
+
 
                         //TODO: aquí debo guardar la nueva tarea en el arreglo
 
