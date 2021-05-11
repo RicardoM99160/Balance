@@ -60,6 +60,14 @@
     <string name="rgBtnCrearCuenta">Crear Cuenta</string>
     <string name="rgBtnGoogle">Continuar con Google</string>
     <string name="rgTxtSeleccionarInicio">O sino puedes</string>
+    
+    <!-- Task Details -->
+    <string name="tdTxtTitulo">Tarea</string>
+    <string name="tdTxtDuracion">Duración pomodoro</string>
+    <string name="tdTxtCantidad">Cantidad</string>
+    <string name="tdTxtInterrupciones">Interrupciones</string>
+    <string name="tdBtnEliminar">Eliminar</string>
+
 
     <!-- Custom Dialog Strings -->
     <string name="cdHomepageStartTaskTitle">¿Desea iniciar la tarea?</string>

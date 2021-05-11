@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
     ArrayList<Task> tasksList;
     TaskAdapter adapter;
+    Task tareaSeleccionada;
 
     public static FirebaseDatabase database = FirebaseDatabase.getInstance();
     public static DatabaseReference databaseReference = database.getReference("usuarios");
@@ -79,7 +80,11 @@ public class MainActivity extends AppCompatActivity {
         recyclerViewTasks = (RecyclerView) findViewById(R.id.hpRecyclerVTasks);
         selectTaskSetUp();
 
-        initialize();
+        try {
+            initialize();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -92,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void initialize(){
+    public void initialize() throws InterruptedException {
 
         linearLayoutWithoutTasks = (LinearLayout) findViewById(R.id.hpLinearLayoutWithoutTasks);
         btnUsericon = (ImageView) findViewById(R.id.hpBtnUsericon);
@@ -141,20 +146,22 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View v) {
 
+                            tareaSeleccionada = tasksList.get(recyclerViewTasks.getChildAdapterPosition(v));
                             //Si la tarea no ha sido iniciada (isStartetd = false) entonces se muestra el modal para iniciar la tarea
-                            if(!tasksList.get(recyclerViewTasks.getChildAdapterPosition(v)).isStarted()){
+                            if(!tareaSeleccionada.isStarted()){
                                 showDialog(v, "iniciar");
                             }else{
-                                //Si la tarea ya fue iniciada una vez (isStarted = true) entonces se muestra el siguiente mensaje
-                                Toast.makeText(MainActivity.this, "Ya no se puede realizar esta tarea, ya fue realizada", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(MainActivity.this, TaskDetails.class);
+                                intent.putExtra("selectedTask", tareaSeleccionada);
+                                startActivity(intent);
                             }
-
                         }
                     });
 
                     adapter.onLongClick(new View.OnLongClickListener() {
                         @Override
                         public boolean onLongClick(View v) {
+                            tareaSeleccionada = tasksList.get(recyclerViewTasks.getChildAdapterPosition(v));
                             showDialog(v, "archivar");
                             return false;
                         }
@@ -198,7 +205,7 @@ public class MainActivity extends AppCompatActivity {
 
         confirmation.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-        Task tareaSeleccionada = tasksList.get(recyclerViewTasks.getChildAdapterPosition(v));
+        //tareaSeleccionada = tasksList.get(recyclerViewTasks.getChildAdapterPosition(v));
 
         //Agregando onClickListener a los botones del diálogo
         yes_btn.setOnClickListener(new View.OnClickListener() {
@@ -316,7 +323,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //
-    public void getUserData() {
+    public void getUserData() throws InterruptedException {
 
         //logged with google
         FirebaseUser user = mAuth.getCurrentUser();
@@ -326,6 +333,7 @@ public class MainActivity extends AppCompatActivity {
 
         String nombreUsuario;
 
+        Thread.sleep(1000);
         strProvider = mAuth.getInstance().
                 getAccessToken(false).getResult().getSignInProvider();
         
