@@ -60,13 +60,20 @@
     <string name="rgBtnCrearCuenta">Crear Cuenta</string>
     <string name="rgBtnGoogle">Continuar con Google</string>
     <string name="rgTxtSeleccionarInicio">O sino puedes</string>
-    
+
     <!-- Task Details -->
     <string name="tdTxtTitulo">Tarea</string>
     <string name="tdTxtDuracion">Duración pomodoro</string>
     <string name="tdTxtCantidad">Cantidad</string>
     <string name="tdTxtInterrupciones">Interrupciones</string>
     <string name="tdBtnEliminar">Eliminar</string>
+
+    <!-- User Profile -->
+    <string name="upTxtTareasCompletadas">Tareas completadas</string>
+    <string name="upTxtTareasFallidas">Tareas fallidas</string>
+    <string name="upTxtTareasPendientes">Tareas pendientes</string>
+    <string name="upTxtEmojiFavorito">Emoji favorito</string>
+
 
 
     <!-- Custom Dialog Strings -->
@@ -81,6 +88,8 @@
     <string name="cdOngoingTaskFinishSubtitle">Si termina la tarea será tomada como fallida</string>
     <string name="cdOngoingTaskConfirmar">Si</string>
     <string name="cdOngoingTaskCancelar">No</string>
+
+
 
 
 </resources>

@@ -27,5 +27,5 @@
     <color name="mtrl_textinput_default_box_stroke_color">#C1C1C1</color>
 
     <color name="textInputLayoutUnfocused">#C1C1C1</color>
-    <color name="login_accent">#795BD1</color>
+    <color name="purple_accent">#795BD1</color>
 </resources>
