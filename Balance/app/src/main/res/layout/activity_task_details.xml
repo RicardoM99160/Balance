@@ -194,15 +194,16 @@
             android:id="@+id/tdTxtPomodoroTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/fuente_2_bold"
             android:text="@string/tdTxtInterrupciones"
+            android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="23sp"
-            android:fontFamily="@font/fuente_2_bold"
             android:textStyle="bold"
-            android:textAllCaps="true"
 
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -220,6 +221,33 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tdTxtPomodoroTitle" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/tdRecyclerVNotes"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginBottom="100dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/tdTxtSinInterrupciones"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No posee interrupciones"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            android:fontFamily="@font/fuente_2_bold"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

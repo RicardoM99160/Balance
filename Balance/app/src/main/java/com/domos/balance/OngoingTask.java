@@ -22,6 +22,7 @@ import com.domos.balance.data.Task;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 public class OngoingTask extends AppCompatActivity {
@@ -349,14 +350,15 @@ public class OngoingTask extends AppCompatActivity {
         yes_btn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v2) {
                 if(!TextUtils.isEmpty(edtInterrupcion.getText().toString()) && !edtInterrupcion.getText().toString().trim().isEmpty()){
-
+                    SimpleDateFormat sdf = new SimpleDateFormat("HH:mm a");
+                    String currentMoment = sdf.format(new Date());
                     ArrayList<String> notes = new ArrayList<>();
                     if(ongoingTask.getNotes() == null){
-                        notes.add(edtInterrupcion.getText().toString());
+                        notes.add(edtInterrupcion.getText().toString()+"/"+currentMoment);
                         ongoingTask.setNotes(notes);
                     }else {
                         notes = ongoingTask.getNotes();
-                        notes.add(edtInterrupcion.getText().toString());
+                        notes.add(edtInterrupcion.getText().toString()+"/"+currentMoment);
                         ongoingTask.setNotes(notes);
                     }
                     confirmation.dismiss();
