@@ -301,6 +301,8 @@ public class MainActivity extends AppCompatActivity {
 
                     case R.id.menuitemMiPerfil:
                         //TODO: Programar activiy Mi Perfil
+                        intent = new Intent(MainActivity.this, UserProfile.class);
+                        startActivity(intent);
                         return true;
 
                     //el segundo cierra sesion
