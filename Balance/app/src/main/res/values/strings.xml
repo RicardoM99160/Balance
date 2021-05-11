@@ -88,6 +88,9 @@
     <string name="cdOngoingTaskFinishSubtitle">Si termina la tarea será tomada como fallida</string>
     <string name="cdOngoingTaskConfirmar">Si</string>
     <string name="cdOngoingTaskCancelar">No</string>
+    <string name="cdOngoingTaskInterruptionTitle">¿Qué sucede?</string>
+    <string name="cdOngoingTaskInterruptionHint">Digita tu interrupción</string>
+    <string name="cdOngoingTaskInterruptionRegistrar">Registrar</string>
 
 
 

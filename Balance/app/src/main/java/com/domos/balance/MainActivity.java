@@ -189,6 +189,9 @@ public class MainActivity extends AppCompatActivity {
         Button yes_btn = (Button) confirmation.findViewById(R.id.cdBtnYes);
         Button no_btn = (Button) confirmation.findViewById(R.id.cdBtnNo);
 
+        EditText cdEdtInterrupcion = (EditText) confirmation.findViewById(R.id.cdEdtInterrupcion);
+        cdEdtInterrupcion.setVisibility(View.GONE);
+
         switch(action){
             case "iniciar":
                 txtTitle.setText(R.string.cdHomepageStartTaskTitle);

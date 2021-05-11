@@ -9,15 +9,19 @@ import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.domos.balance.data.Task;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 public class OngoingTask extends AppCompatActivity {
@@ -35,11 +39,15 @@ public class OngoingTask extends AppCompatActivity {
     ConstraintLayout constraintLayoutBreak, constraintLayoutOngoingTask;
     MediaPlayer mediaPlayer;
 
+    boolean taskIsFinished;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ongoing_task);
+
+        taskIsFinished = false;
 
         //Recuperando tarea en proceso
         Intent intent = getIntent();
@@ -93,6 +101,8 @@ public class OngoingTask extends AppCompatActivity {
                 }else {
 
                     //TODO: Si se llega a este punto significa que la tarea fue terminada con exito
+
+                    taskIsFinished = true;
 
                     //Significa que la tarea fue terminada con exito
                     ongoingTask.setSuccessful(true);
@@ -190,8 +200,8 @@ public class OngoingTask extends AppCompatActivity {
                 break;
 
             case "10 sec - 5 sec":
-                pomodoroDuration = TimeUnit.SECONDS.toMillis(5);
-                pomodoroRest = TimeUnit.SECONDS.toMillis(3);
+                pomodoroDuration = TimeUnit.SECONDS.toMillis(10);
+                pomodoroRest = TimeUnit.SECONDS.toMillis(5);
                 break;
         }
 
@@ -220,6 +230,11 @@ public class OngoingTask extends AppCompatActivity {
         btnInterrupt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(taskIsFinished){
+                    Toast.makeText(OngoingTask.this, "No puede agregar nuevas interrupciones", Toast.LENGTH_SHORT).show();
+                }else{
+                    showInterruptionDialog();
+                }
 
             }
         });
@@ -266,6 +281,9 @@ public class OngoingTask extends AppCompatActivity {
         Button yes_btn = (Button) confirmation.findViewById(R.id.cdBtnYes);
         Button no_btn = (Button) confirmation.findViewById(R.id.cdBtnNo);
 
+        EditText cdEdtInterrupcion = (EditText) confirmation.findViewById(R.id.cdEdtInterrupcion);
+        cdEdtInterrupcion.setVisibility(View.GONE);
+
         txtTitle.setText(title);
         txtSubtitle.setText(subtitle);
         yes_btn.setText(confirm);
@@ -301,6 +319,55 @@ public class OngoingTask extends AppCompatActivity {
                 confirmation.dismiss();
             }
         });
+    }
+
+    public void showInterruptionDialog(){
+        //Instanciando dialogo de yes/no
+        CustomYesNoDialog confirmation = new CustomYesNoDialog(OngoingTask.this);
+
+        confirmation.show();
+
+        confirmation.setContentView(R.layout.custom_yes_no_dialog);
+
+        TextView txtTitle = (TextView) confirmation.findViewById(R.id.cdTxtTitle);
+        TextView txtSubtitle = (TextView) confirmation.findViewById(R.id.cdTxtSubtitle);
+        Button yes_btn = (Button) confirmation.findViewById(R.id.cdBtnYes);
+        Button no_btn = (Button) confirmation.findViewById(R.id.cdBtnNo);
+        EditText edtInterrupcion = (EditText) confirmation.findViewById(R.id.cdEdtInterrupcion);
+
+        txtSubtitle.setVisibility(View.GONE);
+        no_btn.setVisibility(View.GONE);
+
+        txtTitle.setText(R.string.cdOngoingTaskInterruptionTitle);
+        edtInterrupcion.setHint(R.string.cdOngoingTaskInterruptionHint);
+        yes_btn.setText(R.string.cdOngoingTaskInterruptionRegistrar);
+
+
+        confirmation.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        //Agregando onClickListener a los botones del diálogo
+        yes_btn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v2) {
+                if(!TextUtils.isEmpty(edtInterrupcion.getText().toString()) && !edtInterrupcion.getText().toString().trim().isEmpty()){
+
+                    ArrayList<String> notes = new ArrayList<>();
+                    if(ongoingTask.getNotes() == null){
+                        notes.add(edtInterrupcion.getText().toString());
+                        ongoingTask.setNotes(notes);
+                    }else {
+                        notes = ongoingTask.getNotes();
+                        notes.add(edtInterrupcion.getText().toString());
+                        ongoingTask.setNotes(notes);
+                    }
+                    confirmation.dismiss();
+                }else{
+                    Toast.makeText(getApplicationContext(), "Coloque un nombre a la tarea", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+            }
+        });
+
     }
 
     public void saveData(){
