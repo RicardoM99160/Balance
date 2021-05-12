@@ -1,5 +1,6 @@
 package com.domos.balance;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -19,6 +20,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.domos.balance.data.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -378,6 +382,8 @@ public class OngoingTask extends AppCompatActivity {
         }
 
         MainActivity.databaseReference.child(MainActivity.userUID).child("TareasPendientes").child(ongoingTask.getId()).setValue(ongoingTask);
+
+        statistics();
     }
 
     public void updateUI(String ui){
@@ -393,5 +399,46 @@ public class OngoingTask extends AppCompatActivity {
         }
         txtCurrentPomodoro.setText("POMODORO "+ongoingTask.getCurrentPomodoro());
 
+    }
+
+    public void statistics(){
+        MainActivity.databaseReference.child(MainActivity.userUID).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Long tareasRealizadas = (Long) snapshot.child("tareasRealizadas").getValue();
+                Long tareasExitosas = (Long) snapshot.child("tareasExitosas").getValue();
+                Long tareasFallidas = (Long) snapshot.child("tareasFallidas").getValue();
+                Long tareasPendientes = (Long) snapshot.child("misTareasPendientes").getValue();
+
+                //Esto significa que ahora hay una tarea pendiente menos, porque ya se realizó
+                MainActivity.databaseReference.child(MainActivity.userUID).child("misTareasPendientes").setValue(tareasPendientes - 1);
+
+                if(tareasRealizadas == null){
+                    MainActivity.databaseReference.child(MainActivity.userUID).child("tareasRealizadas").setValue(1);
+                }else{
+                    MainActivity.databaseReference.child(MainActivity.userUID).child("tareasRealizadas").setValue(tareasRealizadas + 1);
+                }
+
+
+                if(ongoingTask.isSuccessful()){
+                    if(tareasExitosas == null){
+                        MainActivity.databaseReference.child(MainActivity.userUID).child("tareasExitosas").setValue(1);
+                    }else{
+                        MainActivity.databaseReference.child(MainActivity.userUID).child("tareasExitosas").setValue(tareasExitosas + 1);
+                    }
+                }else{
+                    if(tareasFallidas == null){
+                        MainActivity.databaseReference.child(MainActivity.userUID).child("tareasFallidas").setValue(1);
+                    }else{
+                        MainActivity.databaseReference.child(MainActivity.userUID).child("tareasFallidas").setValue(tareasFallidas + 1);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }

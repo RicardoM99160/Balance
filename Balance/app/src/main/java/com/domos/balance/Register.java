@@ -17,6 +17,8 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 
 public class Register extends AppCompatActivity {
@@ -25,12 +27,16 @@ public class Register extends AppCompatActivity {
     Button btnRegistrarUsuario;
 
     private FirebaseAuth mAuth;
+    private SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+    private String currentDate;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        currentDate = sdf.format(new Date());
 
         mAuth = FirebaseAuth.getInstance();
         inicializar();
@@ -81,6 +87,10 @@ public class Register extends AppCompatActivity {
                                     //TODO:Esto es bien sucio, sucio bichos sucio
                                     HashMap<String, String> nuevoUsuario = new HashMap<>();
                                     nuevoUsuario.put("Nombre", nombre);
+                                    nuevoUsuario.put("FechaCreacion", currentDate);
+                                    nuevoUsuario.put("misTareasPendientes", "0");
+                                    nuevoUsuario.put("misTareasCompletadas", "0");
+                                    nuevoUsuario.put("misTareasFallidas", "0");
                                     MainActivity.databaseReference.child(task.getResult().getUser().getUid()).setValue(nuevoUsuario);
                                     Intent intent = new Intent(Register.this, Login.class);
                                     startActivity(intent);

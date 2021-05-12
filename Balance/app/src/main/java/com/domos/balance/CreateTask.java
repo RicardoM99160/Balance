@@ -1,5 +1,6 @@
 package com.domos.balance;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -18,6 +19,9 @@ import android.widget.Toast;
 
 import com.domos.balance.adapters.EmojiAdapter;
 import com.domos.balance.data.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -190,7 +194,7 @@ public class CreateTask extends AppCompatActivity {
                         //Envio la tarea a la base de datos
                         //TODO: Cuando ya haya agregado la autenticación, reemplazar UIDUser por el UID de el usuario loggeado
                         MainActivity.databaseReference.child(MainActivity.userUID).child("TareasPendientes").push().setValue(newTask);
-
+                        statistics();
 
                         //TODO: aquí debo guardar la nueva tarea en el arreglo
 
@@ -278,9 +282,24 @@ public class CreateTask extends AppCompatActivity {
         }
     }
 
-    public void goToHomepage(View view){
-        Intent intent = new Intent(this,MainActivity.class);
-        startActivity(intent);
+    public void statistics(){
+        MainActivity.databaseReference.child(MainActivity.userUID).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Long tareasPendientes = (Long) snapshot.child("misTareasPendientes").getValue();
+
+                if(tareasPendientes == null){
+                    MainActivity.databaseReference.child(MainActivity.userUID).child("misTareasPendientes").setValue(1);
+                }else{
+                    MainActivity.databaseReference.child(MainActivity.userUID).child("misTareasPendientes").setValue(tareasPendientes + 1);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
 }

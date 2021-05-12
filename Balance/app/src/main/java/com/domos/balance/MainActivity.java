@@ -62,11 +62,22 @@ public class MainActivity extends AppCompatActivity {
     public static String userUID;
     Query userTasks;
 
+    public static FirebaseUser user;
+    public static String userName;
+    public static int pendingTasks;
+    public static int startedTasks;
+    public static int successfulTasks;
+    public static int failedTasks;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        pendingTasks = 0;
+        startedTasks = 0;
+        successfulTasks = 0;
+        failedTasks = 0;
 
         mAuth = FirebaseAuth.getInstance();
         userUID = mAuth.getUid();
@@ -126,8 +137,18 @@ public class MainActivity extends AppCompatActivity {
                 for(DataSnapshot dato : snapshot.getChildren()){
                     Task task = dato.getValue(Task.class);
                     task.setId(dato.getKey());
-                    Log.i("KK", task.getId());
                     tasksList.add(task);
+
+                    if(task.isStarted()){
+                        startedTasks++;
+                        if(task.isSuccessful()){
+                            successfulTasks++;
+                        }else{
+                            failedTasks++;
+                        }
+                    }else{
+                        pendingTasks++;
+                    }
                 }
 
                 if(tasksList.isEmpty()){
@@ -331,12 +352,10 @@ public class MainActivity extends AppCompatActivity {
     public void getUserData() throws InterruptedException {
 
         //logged with google
-        FirebaseUser user = mAuth.getCurrentUser();
+        user = mAuth.getCurrentUser();
 
         if (user == null)
             return;
-
-        String nombreUsuario;
 
         Thread.sleep(1000);
         strProvider = mAuth.getInstance().
@@ -344,8 +363,8 @@ public class MainActivity extends AppCompatActivity {
         
         switch (strProvider) {
             case "google.com":
-                nombreUsuario = user.getDisplayName();
-                tvNombreUsuario.setText(nombreUsuario);
+                userName = user.getDisplayName();
+                tvNombreUsuario.setText(userName);
                 break;
 
             case "password":
@@ -355,8 +374,8 @@ public class MainActivity extends AppCompatActivity {
                 ValueEventListener eventListener = new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        String nombreUsuario = dataSnapshot.child("Nombre").getValue(String.class);
-                        tvNombreUsuario.setText(nombreUsuario);
+                        userName = dataSnapshot.child("Nombre").getValue(String.class);
+                        tvNombreUsuario.setText(userName);
                     }
 
                     @Override
