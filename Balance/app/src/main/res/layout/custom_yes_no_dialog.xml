@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".CustomYesNoDialog"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:padding="25dp"
+    >
+
+    <TextView
+        android:id="@+id/cdTxtTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:text="@string/cdHomepageStartTaskTitle"
+        android:textColor="@android:color/black"
+        android:textSize="15dp"
+        android:fontFamily="@font/fuente_1_bold"/>
+
+
+    <TextView
+        android:id="@+id/cdTxtSubtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:text="@string/cdHomepageStartTaskTitle"
+        android:textColor="@color/txt_gray"
+        android:textSize="15dp"
+        android:fontFamily="@font/fuente_1"
+        android:gravity="center"/>
+
+    <EditText
+        android:id="@+id/cdEdtInterrupcion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:gravity="start|top"
+        android:inputType="textMultiLine"
+        android:hint="Digita tu interrupción"
+        android:textColorHint="@color/txt_gray"
+        android:textColor="@color/black"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:layout_marginVertical="10dp">
+
+        <Button
+            android:id="@+id/cdBtnYes"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:background="@drawable/custom_button"
+            android:backgroundTint="@color/button_red"
+            android:clickable="true"
+            android:text="@string/cdHomepageConfirmar"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textAllCaps="true"/>
+
+        <Button
+            android:id="@+id/cdBtnNo"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/custom_button"
+            android:backgroundTint="@color/button_red"
+            android:clickable="true"
+            android:text="@string/cdHomepageCancelar"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textAllCaps="true"/>
+    </LinearLayout>
+
+</LinearLayout>
