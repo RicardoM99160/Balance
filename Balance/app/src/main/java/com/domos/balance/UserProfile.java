@@ -26,7 +26,7 @@ public class UserProfile extends AppCompatActivity {
     TextView txtUserName, txtUserAntiquity, txtCompletedTasks, txtFailedTasks, txtPendingTasks;
     ImageView imgEmojiFav;
 
-    Long userAntiquity, tareasRealizadas, tareasExitosas, tareasFallidas, tareasPendientes;
+    Long userAntiquity, tareasRealizadas, tareasExitosas, tareasFallidas, tareasPendientes, ultimoEmoji;
 
     //private FirebaseAuth mAuth;
 
@@ -35,6 +35,12 @@ public class UserProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
+
+        tareasRealizadas = null;
+        tareasExitosas = null;
+        tareasFallidas = null;
+        tareasPendientes = null;
+        ultimoEmoji = null;
 
         initialize();
     }
@@ -82,10 +88,31 @@ public class UserProfile extends AppCompatActivity {
                 tareasExitosas = (Long) snapshot.child("tareasExitosas").getValue();
                 tareasFallidas = (Long) snapshot.child("tareasFallidas").getValue();
                 tareasPendientes = (Long) snapshot.child("misTareasPendientes").getValue();
+                ultimoEmoji = (Long) snapshot.child("ultimoEmoji").getValue();
 
-                txtCompletedTasks.setText(""+tareasExitosas);
-                txtFailedTasks.setText(""+tareasFallidas);
-                txtPendingTasks.setText(""+tareasPendientes);
+                if(tareasExitosas == null){
+                    txtCompletedTasks.setText("0");
+                }else{
+                    txtCompletedTasks.setText(""+tareasExitosas);
+                }
+
+                if(tareasFallidas == null){
+                    txtFailedTasks.setText("0");
+                }else{
+                    txtFailedTasks.setText(""+tareasFallidas);
+                }
+
+                if(tareasPendientes == null){
+                    txtPendingTasks.setText("0");
+                }else{
+                    txtPendingTasks.setText(""+tareasPendientes);
+                }
+
+                if(tareasPendientes == null){
+                    imgEmojiFav.setImageResource(R.drawable.nervous);
+                }else{
+                    imgEmojiFav.setImageResource(Integer.parseInt(String.valueOf(ultimoEmoji)));
+                }
             }
 
             @Override

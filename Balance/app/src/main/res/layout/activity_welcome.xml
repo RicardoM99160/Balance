@@ -30,7 +30,7 @@
         android:text="@string/wTxtTitulo"
         android:textColor="@color/black"
         android:fontFamily="@font/fuente_1"
-        android:textSize="35sp"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -48,7 +48,8 @@
         android:backgroundTint="@color/button_red"
         android:fontFamily="@font/fuente_2_bold"
         android:text="@string/wBtnInicioSesion"
-        android:textSize="17sp"
+        android:letterSpacing="0.1"
+        android:lineSpacingExtra="10sp"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -65,15 +66,16 @@
         android:layout_marginEnd="70dp"
         android:background="@drawable/custom_button"
         android:backgroundTint="@color/button_gray"
+        android:fontFamily="@font/fuente_2"
         android:text="@string/wBtnRegistrarse"
-        android:textColor="@color/black"
-        android:fontFamily="@font/fuente_2_bold"
-        android:textSize="17sp"
+        android:textColor="#494949"
+        android:letterSpacing="0.1"
+        android:lineSpacingExtra="10sp"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.91" />
+        app:layout_constraintVertical_bias="0.908" />
 </androidx.constraintlayout.widget.ConstraintLayout>

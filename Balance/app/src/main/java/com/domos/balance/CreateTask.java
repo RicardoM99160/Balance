@@ -293,6 +293,8 @@ public class CreateTask extends AppCompatActivity {
                 }else{
                     MainActivity.databaseReference.child(MainActivity.userUID).child("misTareasPendientes").setValue(tareasPendientes + 1);
                 }
+
+                MainActivity.databaseReference.child(MainActivity.userUID).child("ultimoEmoji").setValue(newTask.getEmoji());
             }
 
             @Override

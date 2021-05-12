@@ -23,7 +23,8 @@
             android:layout_height="wrap_content"
             android:text="Nombre usuario"
             android:textColor="@color/black"
-            android:textSize="30sp"
+            android:textSize="35sp"
+            android:fontFamily="@font/fuente_1_bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -36,7 +37,8 @@
             android:layout_height="wrap_content"
             android:text="Ususario por 124 días"
             android:textColor="@color/txt_gray"
-            android:textSize="15sp"
+            android:textSize="20sp"
+            android:fontFamily="@font/fuente_1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
@@ -44,129 +46,104 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.247" />
 
-        <TextView
-            android:id="@+id/upTxtCompletedTasksCount"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textColor="@color/purple_accent"
-            android:textSize="20sp"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.145"
+            app:layout_constraintHorizontal_bias="0.154"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.351" />
+            app:layout_constraintVertical_bias="0.846">
 
-        <TextView
-            android:id="@+id/upTxtCompletedTasks"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/upTxtTareasCompletadas"
-            android:textColor="@color/black"
-            android:textSize="15sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.173"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.417" />
+            <TextView
+                android:id="@+id/upTxtCompletedTasksCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:fontFamily="@font/fuente_1_bold"
+                android:text="TextView"
+                android:textColor="@color/purple_accent"
+                android:textSize="25sp" />
 
-        <TextView
-            android:id="@+id/upTxtFailedTasksCount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textColor="@color/purple_accent"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.145"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/upTxtCompletedTasks"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:fontFamily="@font/fuente_1"
+                android:text="@string/upTxtTareasCompletadas"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/upTxtFailedTasks"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/upTxtTareasFallidas"
-            android:textColor="@color/black"
-            android:textSize="15sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.152"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.565" />
+            <TextView
+                android:id="@+id/upTxtFailedTasksCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:fontFamily="@font/fuente_1_bold"
+                android:text="TextView"
+                android:textColor="@color/purple_accent"
+                android:textSize="25sp" />
 
-        <TextView
-            android:id="@+id/upTxtPendingTasksCount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textColor="@color/purple_accent"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.145"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.637" />
+            <TextView
+                android:id="@+id/upTxtFailedTasks"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:fontFamily="@font/fuente_1"
+                android:text="@string/upTxtTareasFallidas"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/upTxtPendingTasks"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/upTxtTareasPendientes"
-            android:textColor="@color/black"
-            android:textSize="15sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.166"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.704" />
+            <TextView
+                android:id="@+id/upTxtPendingTasksCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:fontFamily="@font/fuente_1_bold"
+                android:text="TextView"
+                android:textColor="@color/purple_accent"
+                android:textSize="25sp" />
 
-        <TextView
-            android:id="@+id/textView7"
-            android:layout_width="0dp"
-            android:layout_height="4dp"
+            <TextView
+                android:id="@+id/upTxtPendingTasks"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:fontFamily="@font/fuente_1"
+                android:text="@string/upTxtTareasPendientes"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
 
-            android:layout_marginStart="50dp"
-            android:layout_marginEnd="310dp"
-            android:background="@drawable/thick_line"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.764" />
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:layout_marginVertical="10dp"
+                android:layout_marginRight="75dp"
+                android:background="@drawable/thick_line" />
 
-        <ImageView
-            android:id="@+id/upImgEmojiFav"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.138"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.892"
-            app:srcCompat="@drawable/nervous" />
+            <ImageView
+                android:id="@+id/upImgEmojiFav"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="5dp"
+                app:srcCompat="@drawable/nervous" />
 
-        <TextView
-            android:id="@+id/upTxtEmojiFav"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/upTxtEmojiFavorito"
-            android:textColor="@color/black"
-            android:textSize="15sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.15"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.951" />
+            <TextView
+                android:id="@+id/upTxtEmojiFav"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:fontFamily="@font/fuente_1"
+                android:text="@string/upTxtEmojiFavorito"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+        </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
